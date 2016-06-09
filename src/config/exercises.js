@@ -359,9 +359,9 @@ const exercises = [
                 nextEvent: null
               },
 
-              // When making Ajax requests based on user input, it's
-              // often useful to "watch" that data and run a function
-              // to fetch new data every time that data changes.
+              // When making Ajax requests based on user input, it's often
+              // useful to "watch" the data bound to that input and run a
+              // function to make a new Ajax request when it changes.
               watch: {
                 topic: function () {
                   this.$http.get(
