@@ -48,7 +48,7 @@
           <li v-for="concept in example.newPrereqJavaScript">
             <a :href="concept.url" target="_blank">
               {{{ concept.title }}}
-            <a>
+            </a>
           </li>
         </ul>
       </div>
