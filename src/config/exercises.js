@@ -358,9 +358,9 @@ const exercises = [
                 topic: function () {
                   this.$http.get(
                     'http://api.lansing.codes/v1/events/upcoming/search/' + this.topic
-                    ).then(function (response) {
-                      this.nextEvent = response.data.data[0]
-                    })
+                  ).then(function (response) {
+                    this.nextEvent = response.data.data[0]
+                  })
                 }
               }
             })
