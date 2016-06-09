@@ -348,7 +348,7 @@ export default [
     `
   },
   {
-    title: '4. Lifecycle methods, conditional rendering, and ajax fetching',
+    title: '4. Lifecycle hooks, conditional rendering, and Ajax fetching',
     examples: [
       generateCodeProperties({
         exerciseId: 4,
@@ -421,26 +421,27 @@ export default [
         title: 'Searching for upcoming events with the Lansing.Codes API',
         headCode: `
           <script src="https://cdn.jsdelivr.net/vue.resource/latest/vue-resource.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
         `,
         bodyCode: `
           <h1>
-             Next
-             <!--
-             When used with v-model, the debounce attribute parameter waits until
-             the user has stopped typing for the specified number of milliseconds
-             before actually updating state. It is being deprecated in Vue 2.0 and
-             the link below contains an explanation as to why, as well as
-             strategies and examples for how to do even more powerful debouncing!
-             https://gist.github.com/chrisvfritz/b45f74dc3742a8a224410d177e5fbd5d
-             -->
-             <input v-model="topic" debounce="500" placeholder="event topic">
-             event
+            Next
+            <input v-model="topic" placeholder="event topic">
+            event
           </h1>
-          <p v-if="nextEvent">
-            This next {{ topic }} event is
-            <a v-bind:href="nextEvent.links.self" target="_blank">
-              {{ nextEvent.attributes.name }}
-            </a>
+          <p>
+            <span v-if="fetchStatus === 'done'">
+              <span v-if="nextEvent">
+                The next {{ topic }} event is
+                <a v-bind:href="nextEvent.links.self" target="_blank">
+                  {{ nextEvent.attributes.name }}
+                </a>
+              </span>
+              <span v-else>
+                No meetups found for that topic.
+              </span>
+            </span>
+            <span v-else>{{ fetchStatus }}</span>
           </p>
 
           <script>
@@ -451,20 +452,48 @@ export default [
 
               data: {
                 topic: '',
+                fetchStatus: 'waiting for input...',
                 nextEvent: null
               },
 
               // When making Ajax requests based on user input, it's often
-              // useful to "watch" the data bound to that input and run a
-              // function to make a new Ajax request when it changes.
+              // useful to "watch" the data bound to that input and trigger
+              // a function when it changes.
               watch: {
                 topic: function () {
-                  this.$http.get(
-                    'http://api.lansing.codes/v1/events/upcoming/search/' + this.topic
-                  ).then(function (response) {
-                    this.nextEvent = response.data.data[0]
-                  })
+                  this.fetchStatus = 'typing...'
+                  this.fetchPlanets()
                 }
+              },
+
+              methods: {
+                // _.debounce is a function provided by lodash to limit how
+                // often a particularly expensive operation can be run.
+                // In this case, we want to limit how often we hit the
+                // Lansing.Codes API, waiting until the user has completely
+                // finished typing before making the actual Ajax request.
+                // To learn more about the _.debounce function (and its
+                // cousin _.throttle), visit:
+                // https://lodash.com/docs#debounce
+                fetchPlanets: _.debounce(
+                  function () {
+                    if (this.topic.trim().length === 0) {
+                      this.fetchStatus = 'waiting for input...'
+                    } else {
+                      this.fetchStatus = 'loading...'
+                    }
+
+                    this.$http.get(
+                      'http://api.lansing.codes/v1/events/upcoming/search/' + this.topic
+                    ).then(function (response) {
+                      this.nextEvent = response.data.data[0]
+                      this.fetchStatus = 'done'
+                    })
+                  },
+                  // This is the number of milliseconds we wait for the user
+                  // to stop typing. There are 1000 milliseconds in 1 second.
+                  500
+                )
               }
             })
           </script>
@@ -487,8 +516,7 @@ export default [
       })
     ],
     modification: `
-      <p>Update example 4.2 to display "..." when searching has started, but new results have not yet been returned. If no next event is found, a message should be displayed saying so.</p>
-      <p>Use <code>{{ nextEvent | json }}</code> in your code to inspect the contents of <code>nextEvent</code> and display more information about the event on the page, such as which meetup it's from and the relative time until the event starts.</p>
+      <p>In example 4.2, use <code>{{ nextEvent | json }}</code> in your HTML to inspect the contents of <code>nextEvent</code> and display more information about the event on the page, such as which meetup it's from and the relative time until the event starts.</p>
     `,
     buildFromScratch: `
       <h4>Build an app that answers yes/no questions</h4>
