@@ -314,6 +314,12 @@ const exercises = [
       {
         title: 'Example 4.2: Searching for upcoming events with the Lansing.Codes API',
         code: `
+          <!--
+          It's recommended to add the line below to your head, right next to
+          where you're pulling in the Vue core library.
+          -->
+          <script src="https://cdn.jsdelivr.net/vue.resource/latest/vue-resource.min.js"></script>
+
           <h1>
              Next
              <!--
