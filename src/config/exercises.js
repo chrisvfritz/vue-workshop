@@ -339,7 +339,7 @@ export default [
     ],
     modification: `
       <p>Building on example 3.1, add a new property to new todos called <code>isComplete</code>, which should default to <code>false</code>. Then add a checkbox input next to each item, which is bound to that item's <code>isComplete</code> property with <code>v-model</code>.</p>
-      <p>Finally, add two buttons button below the list of todos. The first will be called "Clear all" and it will reset todos to an empty array when clicked. The second button will be called "Clear completed" and it will set <code>todos</code> to a new array, with all the completed ones filtered out.</p>
+      <p>Finally, add two buttons below the list of todos. The first will be called "Clear all" and it will reset todos to an empty array when clicked. The second button will be called "Clear completed" and it will set <code>todos</code> to a new array of todos, with all the completed ones filtered out.</p>
     `,
     buildFromScratch: `
       <h4>Build a raffle app</h4>
