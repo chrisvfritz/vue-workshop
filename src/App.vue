@@ -54,7 +54,7 @@
       </div>
 
       <h4 :data-anchor-prefix="example.title">
-        Example code
+        The code
       </h4>
       <pre><a :href="example.url" target="_blank"><code>{{ example.code }}</code></a></pre>
 
