@@ -70,6 +70,16 @@ export default [
             title: 'Data binding',
             url: 'http://vuejs.org/guide/syntax.html'
           }
+        ],
+        newPrereqJavaScript: [
+          {
+            title: 'Strings',
+            url: 'http://www.w3schools.com/jsref/jsref_obj_string.asp'
+          },
+          {
+            title: 'Objects',
+            url: 'http://www.w3schools.com/js/js_objects.asp'
+          }
         ]
       }),
       generateCodeProperties({
@@ -145,6 +155,16 @@ export default [
             title: 'Methods in depth',
             url: 'http://vuejs.org/api/#methods'
           }
+        ],
+        newPrereqJavaScript: [
+          {
+            title: 'Functions',
+            url: 'http://www.w3schools.com/js/js_functions.asp'
+          },
+          {
+            title: 'Events',
+            url: 'http://www.w3schools.com/js/js_events.asp'
+          }
         ]
       }),
       generateCodeProperties({
@@ -219,7 +239,6 @@ export default [
   },
   {
     title: '2. Computed values',
-    url: 'http://jsbin.com/kimavikeyi/1/edit?html,output',
     examples: [
       generateCodeProperties({
         exerciseId: 2,
@@ -334,17 +353,23 @@ export default [
             title: 'Array change detection',
             url: 'http://vuejs.org/guide/list.html#Array-Change-Detection'
           }
+        ],
+        newPrereqJavaScript: [
+          {
+            title: 'Arrays',
+            url: 'http://www.w3schools.com/js/js_arrays.asp'
+          }
         ]
       })
     ],
     modification: `
-      <p>Building on example 3.1, add a new property to new todos called <code>isComplete</code>, which should default to <code>false</code>. Then add a checkbox input next to each item, which is bound to that item's <code>isComplete</code> property with <code>v-model</code>.</p>
-      <p>Finally, add two buttons below the list of todos. The first will be called "Clear all" and it will reset todos to an empty array when clicked. The second button will be called "Clear completed" and it will set <code>todos</code> to a new array of todos, with all the completed ones filtered out.</p>
+      <p>Building on example 3.1, add a new property to new todos called <code>isComplete</code>, which should start as <code>false</code>. Then add a checkbox input next to each item, which is bound to that item's <code>isComplete</code> property with <code>v-model</code>.</p>
+      <p>Finally, add two buttons below the list of todos. The first will be called "Clear all" and it will reset todos to an empty array when clicked. The second button will be called "Clear completed" and it will set <code>todos</code> to a new array of todos, with all the completed ones <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples" target="_blank">filtered</a> out.</p>
     `,
     buildFromScratch: `
       <h4>Build a raffle app</h4>
-      <p>Add an input for people to be adding to the list of entrants in the raffle. These entrants should be displayed on the screen right after adding and the input should be cleared.</p>
-      <p>There should also be a button called "Pick winner" which will fire an alert with the name of a random entrant. This entrant should then be removed from the list of entrants, so that they can't win again on the next drawing.</p>
+      <p>Add an input for people to be adding to the list of entrants in the raffle. Once added, these entrants should be displayed in a list and the input should be cleared.</p>
+      <p>There should also be a button called "Pick winner" which will fire an alert with the name of a <a href="http://stackoverflow.com/questions/4550505/getting-random-value-from-an-array" target="_blank">random</a> entrant. This entrant should then be removed from the list, so that they can't win again on the next drawing.</p>
     `
   },
   {
@@ -388,7 +413,7 @@ export default [
               // component has been created, but before it finishes rendering.
               // In the new concepts section, we'll link to a full list of
               // lifecycle methods.
-              created () {
+              created: function () {
                 // $http is made available to all app or component instances,
                 // courtesy of vue-resource.
                 this.$http.get('http://swapi.co/api/planets')
@@ -412,6 +437,12 @@ export default [
           {
             title: 'Lifecycle hook',
             url: 'http://vuejs.org/api/#Options-Lifecycle-Hooks'
+          }
+        ],
+        newPrereqJavaScript: [
+          {
+            title: 'Promises',
+            url: 'http://www.html5rocks.com/en/tutorials/es6/promises/'
           }
         ]
       }),
@@ -498,16 +529,8 @@ export default [
             })
           </script>
         `,
-        itsWorkingWhen: 'typing something like "javascript" into the input results in an event link being fetched and displayed',
+        itsWorkingWhen: 'typing something like "javascript" into the input results in an event link being displayed',
         newConcepts: [
-          {
-            title: '<code>v-model</code> with <code>debounce</code>',
-            url: 'http://vuejs.org/guide/forms.html#debounce'
-          },
-          {
-            title: 'Debouncing in Vue 2.0',
-            url: 'https://gist.github.com/chrisvfritz/b45f74dc3742a8a224410d177e5fbd5d'
-          },
           {
             title: '<code>watch</code>',
             url: 'http://vuejs.org/api/#watch'
