@@ -217,6 +217,10 @@ export default {
   $code-block-padding: $content-horizontal-padding;
   $code-block-background-color: #fbfff3;
 
+  code {
+    font-family: 'PT Mono';
+  }
+
   pre {
     background-color: $code-block-background-color;
     overflow-y: hidden;
@@ -240,14 +244,27 @@ export default {
       right: 0;
       background-image: linear-gradient(to right, transparent, $code-block-background-color);
     }
-  }
 
-  code {
-    font-family: 'PT Mono';
-  }
+    code:after {
+      content: 'click to open';
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.3);
+      padding: $code-block-padding / 3 $code-block-padding / 2;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 2;
+    }
 
-  pre a:hover {
-    text-decoration: none;
+    a:hover {
+      text-decoration: none;
+
+      code:after {
+        opacity: 1;
+      }
+    }
   }
 
   .xml {
