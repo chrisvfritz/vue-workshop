@@ -29,8 +29,12 @@
     <div v-for="exercise in exercises">
       <h2>{{{ exercise.title }}}</h2>
       <div v-for="example in exercise.examples">
-        <h3>{{{ example.title }}}</h3>
-        <pre><code>{{ example.code }}</code></pre>
+        <h3>
+          <a :href="example.url" target="_blank">
+            {{{ example.title }}}
+          </a>
+        </h3>
+        <pre @click="open(example.url)" class="openable"><code>{{ example.code }}</code></pre>
         <h4>It's working when...</h4>
         <p>...{{ example.itsWorkingWhen }}</p>
         <h4>New concepts &amp; recommended reading</h4>
@@ -75,6 +79,11 @@ export default {
     ).forEach(codeBlock => {
       hljs.highlightBlock(codeBlock)
     })
+  },
+  methods: {
+    open (url) {
+      window.open(url, '_blank')
+    }
   }
 }
 </script>
@@ -154,5 +163,9 @@ export default {
 
   header {
     text-align: center;
+  }
+
+  .openable {
+    cursor: pointer;
   }
 </style>

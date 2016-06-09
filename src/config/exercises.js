@@ -4,6 +4,7 @@ const exercises = [
     examples: [
       {
         title: 'Example 1.1: Basic working Vue app',
+        url: 'http://jsbin.com/xujeyutuwa/1/edit?html,output',
         code: `
           <p>{{ greeting }} world!</p>
 
@@ -33,6 +34,7 @@ const exercises = [
       },
       {
         title: 'Example 1.2: Data binding',
+        url: 'http://jsbin.com/dezebekuze/1/edit?html,output',
         code: `
           <!--
           v-model binds data to a form input
@@ -59,6 +61,7 @@ const exercises = [
       },
       {
         title: 'Example 1.3: What <code>v-model</code> is doing',
+        url: 'http://jsbin.com/lebijiyege/1/edit?html,output',
         code: `
           <!--
           This code does exactly the same thing as the previous code
@@ -122,9 +125,11 @@ const exercises = [
   },
   {
     title: '2. Computed values',
+    url: 'http://jsbin.com/kimavikeyi/1/edit?html,output',
     examples: [
       {
         title: 'Example 2.1: Derived/computed values in a calculator',
+        url: 'http://jsbin.com/wenewititu/1/edit?html,output',
         code: `
           <input v-model="firstNumber" type="number" >
           <!--
@@ -185,6 +190,7 @@ const exercises = [
     examples: [
       {
         title: 'Example 3.1: Very simple todo app',
+        url: 'http://jsbin.com/piheyafice/1/edit?html,output',
         code: `
           <input v-model="newTodoText" v-on:keyup.enter="addTodo">
           <ul>
@@ -250,6 +256,7 @@ const exercises = [
     examples: [
       {
         title: 'Example 4.1: Fetching posts via Ajax',
+        url: 'http://jsbin.com/recazu/1/edit?html,output',
         code: `
           <!--
           It's recommended to add the line below to your head, right next to
@@ -313,6 +320,7 @@ const exercises = [
       },
       {
         title: 'Example 4.2: Searching for upcoming events with the Lansing.Codes API',
+        url: 'http://jsbin.com/vayosukovu/1/edit?html,output',
         code: `
           <!--
           It's recommended to add the line below to your head, right next to
@@ -370,7 +378,7 @@ const exercises = [
         newConcepts: [
           {
             title: '<code>v-model</code> with <code>debounce</code>',
-            url: ''
+            url: 'http://vuejs.org/guide/forms.html#debounce'
           },
           {
             title: 'Debouncing in Vue 2.0',
