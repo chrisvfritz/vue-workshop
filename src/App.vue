@@ -35,32 +35,45 @@
 
   <section v-for="exercise in exercises">
     <h2>{{{ exercise.title }}}</h2>
+
     <div v-for="example in exercise.examples">
-      <h3>
-        <a :href="example.url" target="_blank">
-          {{{ example.title }}}
-        </a>
-      </h3>
-      <pre><a :href="example.url"><code>{{ example.code }}</code></a></pre>
-      <h4>It's working when...</h4>
+      <h3>{{{ example.title }}}</h3>
+      <pre><a :href="example.url" target="_blank"><code>{{ example.code }}</code></a></pre>
+
+      <h4 :data-anchor-prefix="example.title">
+        It's working when...
+      </h4>
       <p>...{{ example.itsWorkingWhen }}</p>
-      <h4>New concepts &amp; recommended reading</h4>
-      <ul>
-        <li v-for="concept in example.newConcepts">
-          <a :href="concept.url" target="_blank">
-            {{{ concept.title }}}
-          </a>
-        </li>
-      </ul>
+
+      <div v-if="example.newConcepts.length !== 0">
+        <h4 :data-anchor-prefix="example.title">
+          New concepts &amp; recommended reading
+        </h4>
+        <ul>
+          <li v-for="concept in example.newConcepts">
+            <a :href="concept.url" target="_blank">
+              {{{ concept.title }}}
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <hr>
     </div>
-    <h3>Modification challenge</h3>
+
+    <h3 :data-anchor-prefix="exercise.title">
+      Modification challenge
+    </h3>
     {{{ exercise.modification }}}
     <strong>
       When you're done building your app, show it to someone else in the workshop, so they can test it out and make sure it works.
     </strong>
+
     <hr>
-    <h3>Build-from-scratch challenge</h3>
+
+    <h3 :data-anchor-prefix="exercise.title">
+      Build-from-scratch challenge
+    </h3>
     {{{ exercise.buildFromScratch }}}
     <strong>
       When you're done building your app, show it to someone else in the workshop, so they can test it out and make sure it works.
@@ -80,6 +93,7 @@ export default {
   },
   ready () {
     this.highlightCodeBlocks()
+    this.addHeadingAnchors()
   },
   methods: {
     highlightCodeBlocks () {
@@ -87,6 +101,30 @@ export default {
         document.querySelectorAll('pre code')
       ).forEach(codeBlock => {
         hljs.highlightBlock(codeBlock)
+      })
+    },
+    addHeadingAnchors () {
+      Array.from(
+        document.querySelectorAll('h1,h2,h3,h4,h5,h6')
+      ).forEach(heading => {
+        const sanitizeForAnchor = text => {
+          return text
+            .trim()
+            .toLowerCase()
+            .replace(/\W+/g, '-')
+            .replace(/\-+/g, '-')
+            .replace(/^\W+/g, '')
+            .replace(/\W+$/g, '')
+        }
+
+        const prefix = heading.dataset.anchorPrefix ? sanitizeForAnchor(heading.dataset.anchorPrefix) + '-' : ''
+        const headingId = prefix + sanitizeForAnchor(heading.textContent)
+
+        heading.innerHTML = `
+          <a name="${headingId}" href="#${headingId}">
+            ${heading.innerHTML}
+          </a>
+        `
       })
     }
   }
@@ -100,12 +138,13 @@ export default {
 
   $content-vertical-padding: 15px;
   $content-horizontal-padding: 30px;
+  $body-font-color: #2c3e50;
 
   body {
     font-family: 'Merriweather';
     font-weight: 300;
     line-height: 1.7;
-    color: #2c3e50;
+    color: $body-font-color;
   }
 
   h1,h2,h3,h4,h5,h6 {
@@ -123,10 +162,21 @@ export default {
   a {
     color: #42b983;
     text-decoration: none;
-  }
 
-  a:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &[name] {
+      color: $body-font-color;
+      position: relative;
+
+      &:hover:before {
+        content: '#';
+        position: absolute;
+        left: -1em;
+      }
+    }
   }
 
   hr {
@@ -200,8 +250,10 @@ export default {
     text-decoration: none;
   }
 
-  .xml .javascript {
-    opacity: 1;
+  .xml {
+    .css, .javascript {
+      opacity: 1;
+    }
   }
 
   .hljs {

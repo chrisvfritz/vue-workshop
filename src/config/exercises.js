@@ -1,11 +1,51 @@
-const exercises = [
+const noramilizeExampleCodeWhitespace = (code, indent = 0) => {
+  const baseIndent = 10
+
+  return code
+    .replace(/^\s+/, '')
+    .replace(/\s+$/, '')
+    .replace(new RegExp(`\n {${baseIndent - indent}}`, 'g'), '\n')
+}
+
+const generateCodeProperties = (options) => {
+  let headAndBodyCode = ''
+  if (options.headCode) {
+    headAndBodyCode += '<!-- Add the code below to your head, after the Vue core library -->\n' + noramilizeExampleCodeWhitespace(options.headCode) +
+      '\n<!-- End of head code -->\n\n'
+  }
+  headAndBodyCode += noramilizeExampleCodeWhitespace(options.bodyCode)
+
+  const encodedFullHTML = encodeURIComponent(
+`<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vue App</title>
+  <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>${options.headCode ? '\n  ' + noramilizeExampleCodeWhitespace(options.headCode, 2) : ''}
+</head>
+<body>
+  ${noramilizeExampleCodeWhitespace(options.bodyCode, 2)}
+</body>
+</html>`
+  )
+
+  return {
+    title: `Example ${options.exerciseId}.${options.exampleId}: ${options.title}`,
+    code: headAndBodyCode,
+    url: 'http://jsbin.com/?html,output&html=' + encodedFullHTML,
+    itsWorkingWhen: options.itsWorkingWhen,
+    newConcepts: options.newConcepts
+  }
+}
+
+export default [
   {
     title: '1. Basic data binding and reactivity',
     examples: [
-      {
-        title: 'Example 1.1: Basic working Vue app',
-        url: 'http://jsbin.com/xujeyutuwa/1/edit?html,output',
-        code: `
+      generateCodeProperties({
+        exerciseId: 1,
+        exampleId: 1,
+        title: 'Basic working Vue app',
+        bodyCode: `
           <p>{{ greeting }} world!</p>
 
           <script>
@@ -31,11 +71,12 @@ const exercises = [
             url: 'http://vuejs.org/guide/syntax.html'
           }
         ]
-      },
-      {
-        title: 'Example 1.2: Data binding',
-        url: 'http://jsbin.com/dezebekuze/1/edit?html,output',
-        code: `
+      }),
+      generateCodeProperties({
+        exerciseId: 1,
+        exampleId: 2,
+        title: 'Data binding',
+        bodyCode: `
           <!--
           v-model binds data to a form input
           -->
@@ -58,11 +99,12 @@ const exercises = [
             url: 'http://vuejs.org/guide/forms.html'
           }
         ]
-      },
-      {
-        title: 'Example 1.3: What <code>v-model</code> is doing',
-        url: 'http://jsbin.com/lebijiyege/1/edit?html,output',
-        code: `
+      }),
+      generateCodeProperties({
+        exerciseId: 1,
+        exampleId: 3,
+        title: 'What <code>v-model</code> is doing',
+        bodyCode: `
           <!--
           This code does exactly the same thing as the previous code
           example, but without v-model. This is to demonstrate what
@@ -104,7 +146,59 @@ const exercises = [
             url: 'http://vuejs.org/api/#methods'
           }
         ]
-      }
+      }),
+      generateCodeProperties({
+        exerciseId: 1,
+        exampleId: 4,
+        title: 'Markdown generator',
+        headCode: `
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+          <!--
+          The library above will help us convert markdown to HTML in
+          JavaScript. Don't know what Markdown is? It's a simple
+          markup language that's often used to write rich content
+          that will be hosted online, such as comments (like on
+          GitHub issues), README files, or blog posts.
+
+          Check out this link to learn more:
+          https://guides.github.com/features/mastering-markdown/
+          -->
+
+          <style>
+            textarea {
+              display: block;
+              width: 300px;
+            }
+          </style>
+        `,
+        bodyCode: `
+          <h1>Markdown to HTML Converter</h1>
+
+          <textarea v-model="markdown" rows="10"></textarea>
+          <button v-on:click="generateHTML">
+            Generate HTML
+          </button>
+
+          <pre><code>{{ html }}</code></pre>
+
+          <script>
+            new Vue({
+              el: 'body',
+              data: {
+                markdown: '# This is some markdown\\n\\n- here\\'s\\n- a\\n- list\\n\\nClick the button below to turn me into HTML!',
+                html: '',
+              },
+              methods: {
+                generateHTML: function (event) {
+                  this.html = marked(this.markdown)
+                }
+              }
+            })
+          </script>
+        `,
+        itsWorkingWhen: 'you can click the button and it generates HTML that corresponds to content in the textarea',
+        newConcepts: []
+      })
     ],
     modification: `
       <p>You work on a social messaging site and people keep yelling at each other in all caps. Then the CEO had a great idea. If everything users type is translated to lower case, they won't be able to yell and everyone will be friendly and happy. Perfect solution, right? Use example 1.3 to build a proof-of-concept for an input that automatically translates everything to lower case.</p>
@@ -127,10 +221,11 @@ const exercises = [
     title: '2. Computed values',
     url: 'http://jsbin.com/kimavikeyi/1/edit?html,output',
     examples: [
-      {
-        title: 'Example 2.1: Derived/computed values in a calculator',
-        url: 'http://jsbin.com/wenewititu/1/edit?html,output',
-        code: `
+      generateCodeProperties({
+        exerciseId: 2,
+        exampleId: 1,
+        title: 'Derived/computed values in a calculator',
+        bodyCode: `
           <input v-model="firstNumber" type="number" >
           <!--
           v-model works on other form inputs types as well,
@@ -172,7 +267,7 @@ const exercises = [
             url: 'http://vuejs.org/guide/computed.html'
           }
         ]
-      }
+      })
     ],
     modification: `
       <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank">Using a try/catch</a>, update the computed value in example 2.1 so that if eval throws an error from an invalid value, such as a blank input, the result is set to a useful error message, rather than just being blank.</p>
@@ -188,10 +283,11 @@ const exercises = [
   {
     title: '3. Lists',
     examples: [
-      {
-        title: 'Example 3.1: Very simple todo app',
-        url: 'http://jsbin.com/piheyafice/1/edit?html,output',
-        code: `
+      generateCodeProperties({
+        exerciseId: 3,
+        exampleId: 1,
+        title: 'Very simple todo app',
+        bodyCode: `
           <input v-model="newTodoText" v-on:keyup.enter="addTodo">
           <ul>
             <!--
@@ -239,7 +335,7 @@ const exercises = [
             url: 'http://vuejs.org/guide/list.html#Array-Change-Detection'
           }
         ]
-      }
+      })
     ],
     modification: `
       <p>Building on example 3.1, add a new property to new todos called <code>isComplete</code>, which should default to <code>false</code>. Then add a checkbox input next to each item, which is bound to that item's <code>isComplete</code> property with <code>v-model</code>.</p>
@@ -254,26 +350,27 @@ const exercises = [
   {
     title: '4. Lifecycle methods, conditional rendering, and ajax fetching',
     examples: [
-      {
-        title: 'Example 4.1: Fetching posts via Ajax',
-        url: 'http://jsbin.com/recazu/1/edit?html,output',
-        code: `
-          <!--
-          It's recommended to add the line below to your head, right next to
-          where you're pulling in the Vue core library.
-          -->
+      generateCodeProperties({
+        exerciseId: 4,
+        exampleId: 1,
+        title: 'Fetching Star Wars planets from an API',
+        headCode: `
           <script src="https://cdn.jsdelivr.net/vue.resource/latest/vue-resource.min.js"></script>
-
-          <h1>Posts</h1>
+        `,
+        bodyCode: `
+          <h1>Planets in Star Wars</h1>
           <!--
           v-if ensures that an element only renders when a condition is true
           -->
-          <p v-if="posts.length === 0">
-            Loading posts...
+          <p v-if="planets.length === 0">
+            Loading planets...
           </p>
-          <div v-for="post in posts">
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.body }}</p>
+          <div v-for="planet in planets">
+            <h2>{{ planet.name }}</h2>
+            <ul>
+              <li>Terrain: {{ planet.terrain }}</li>
+              <li>Population: {{ planet.population }}</li>
+            </ul>
           </div>
 
           <script>
@@ -284,7 +381,7 @@ const exercises = [
               el: 'body',
 
               data: {
-                posts: []
+                planets: []
               },
 
               // created is a "lifecycle hook" - it runs once the app or
@@ -294,15 +391,15 @@ const exercises = [
               created () {
                 // $http is made available to all app or component instances,
                 // courtesy of vue-resource.
-                this.$http.get('http://jsonplaceholder.typicode.com/posts')
+                this.$http.get('http://swapi.co/api/planets')
                   .then(function (response) {
-                    this.posts = response.data
+                    this.planets = response.data.results
                   })
               }
             })
           </script>
         `,
-        itsWorkingWhen: 'posts load in via Ajax when the page loads and then are displayed',
+        itsWorkingWhen: 'planets display shortly after the page loads',
         newConcepts: [
           {
             title: 'vue-resource',
@@ -317,17 +414,15 @@ const exercises = [
             url: 'http://vuejs.org/api/#Options-Lifecycle-Hooks'
           }
         ]
-      },
-      {
-        title: 'Example 4.2: Searching for upcoming events with the Lansing.Codes API',
-        url: 'http://jsbin.com/vayosukovu/1/edit?html,output',
-        code: `
-          <!--
-          It's recommended to add the line below to your head, right next to
-          where you're pulling in the Vue core library.
-          -->
+      }),
+      generateCodeProperties({
+        exerciseId: 4,
+        exampleId: 2,
+        title: 'Searching for upcoming events with the Lansing.Codes API',
+        headCode: `
           <script src="https://cdn.jsdelivr.net/vue.resource/latest/vue-resource.min.js"></script>
-
+        `,
+        bodyCode: `
           <h1>
              Next
              <!--
@@ -338,7 +433,7 @@ const exercises = [
              strategies and examples for how to do even more powerful debouncing!
              https://gist.github.com/chrisvfritz/b45f74dc3742a8a224410d177e5fbd5d
              -->
-             <input v-model="topic" debounce="500">
+             <input v-model="topic" debounce="500" placeholder="event topic">
              event
           </h1>
           <p v-if="nextEvent">
@@ -389,7 +484,7 @@ const exercises = [
             url: 'http://vuejs.org/api/#watch'
           }
         ]
-      }
+      })
     ],
     modification: `
       <p>Update example 4.2 to display "..." when searching has started, but new results have not yet been returned. If no next event is found, a message should be displayed saying so.</p>
@@ -401,22 +496,3 @@ const exercises = [
     `
   }
 ]
-
-const noramilizeExampleCodeWhitespace = exercises => {
-  return exercises.map(exercise => {
-    return {
-      ...exercise,
-      examples: exercise.examples.map(example => {
-        return {
-          ...example,
-          code: example.code
-            .replace(/^\s+/, '')
-            .replace(/\s+$/, '')
-            .replace(/\n {10}/g, '\n')
-        }
-      })
-    }
-  })
-}
-
-export default noramilizeExampleCodeWhitespace(exercises)
