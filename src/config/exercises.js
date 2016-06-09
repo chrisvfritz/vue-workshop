@@ -33,7 +33,8 @@ const generateCodeProperties = (options) => {
     code: headAndBodyCode,
     url: 'http://jsbin.com/?html,output&html=' + encodedFullHTML,
     itsWorkingWhen: options.itsWorkingWhen,
-    newConcepts: options.newConcepts
+    newConcepts: options.newConcepts,
+    newPrereqJavaScript: options.newPrereqJavaScript
   }
 }
 
@@ -108,7 +109,8 @@ export default [
             title: 'Form input bindings',
             url: 'http://vuejs.org/guide/forms.html'
           }
-        ]
+        ],
+        newPrereqJavaScript: []
       }),
       generateCodeProperties({
         exerciseId: 1,
@@ -217,7 +219,8 @@ export default [
           </script>
         `,
         itsWorkingWhen: 'you can click the button and it generates HTML that corresponds to content in the textarea',
-        newConcepts: []
+        newConcepts: [],
+        newPrereqJavaScript: []
       })
     ],
     modification: `
@@ -234,7 +237,7 @@ export default [
       <p>After the response is generated, the user's input should also clear so that they're free to type something else.</p>
 
       <h4>Option 2: Build a username generator</h4>
-      <p>A lot of sites have limits on what characters are acceptable for a username. Build a simple app that allows users to type their full name into an input and when they press a "Generate username" button, it will turn their full name into what might be a valid username - for example, replacing spaces with dashes, lowercasing everything, removing special characters, etc. <strong>Note</strong>: It'll be useful to know how to use regular expressions for this one.</p>
+      <p>A lot of sites have limits on what characters are acceptable for a username. Build a simple app that allows users to type their full name into an input and when they press a "Generate username" button, it will turn their full name into what might be a valid username - for example, replacing spaces with dashes, lowercasing everything, removing special characters, etc. <strong>Note</strong>: It'll be useful to know how to use <a href="http://regexone.com/" target="_blank">regular expressions</a> for this one.</p>
     `
   },
   {
@@ -285,11 +288,12 @@ export default [
             title: 'Computed values',
             url: 'http://vuejs.org/guide/computed.html'
           }
-        ]
+        ],
+        newPrereqJavaScript: []
       })
     ],
     modification: `
-      <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank">Using a try/catch</a>, update the computed value in example 2.1 so that if eval throws an error from an invalid value, such as a blank input, the result is set to a useful error message, rather than just being blank.</p>
+      <p><a href="http://www.w3schools.com/js/js_errors.asp" target="_blank">Using a try/catch</a>, update the computed value in example 2.1 so that if eval throws an error from an invalid value, such as a blank input, the result is set to a useful error message, rather than just being blank.</p>
     `,
     buildFromScratch: `
       <h4>Option 1: Build a funny tip calculator</h4>
@@ -535,7 +539,8 @@ export default [
             title: '<code>watch</code>',
             url: 'http://vuejs.org/api/#watch'
           }
-        ]
+        ],
+        newPrereqJavaScript: []
       })
     ],
     modification: `

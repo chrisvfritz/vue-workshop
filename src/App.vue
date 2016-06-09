@@ -38,6 +38,24 @@
 
     <div v-for="example in exercise.examples">
       <h3>{{{ example.title }}}</h3>
+
+      <div v-if="example.newPrereqJavaScript.length !== 0">
+        <h4 :data-anchor-prefix="example.title">
+          Before you start
+        </h4>
+        <p>Make sure you're familiar with the following JavaScript features:</p>
+        <ul>
+          <li v-for="concept in example.newPrereqJavaScript">
+            <a :href="concept.url" target="_blank">
+              {{{ concept.title }}}
+            <a>
+          </li>
+        </ul>
+      </div>
+
+      <h4 :data-anchor-prefix="example.title">
+        Example code
+      </h4>
       <pre><a :href="example.url" target="_blank"><code>{{ example.code }}</code></a></pre>
 
       <h4 :data-anchor-prefix="example.title">
