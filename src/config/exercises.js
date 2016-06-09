@@ -397,7 +397,7 @@ const exercises = [
     `,
     buildFromScratch: `
       <h4>Build an app that answers yes/no questions</h4>
-      <p>We won't just answer yes or no however. We'll display funny gifs using <a href="http://yesno.wtf/api" target="_blank">yesno.wtf/api</a>. Display the gif on the page once you'll pulled it in. Remember that <code>v-bind</code> will be useful for binding data in your app to an image's <code>src</code> attribute.</p>
+      <p>We won't just answer yes or no however. We'll display funny gifs using <a href="http://yesno.wtf/api" target="_blank">yesno.wtf/api</a>. Display the gif on the page once you've pulled it in. Remember that <code>v-bind</code> will be useful for binding data in your app to an image's <code>src</code> attribute.</p>
     `
   }
 ]
