@@ -135,6 +135,10 @@ export default {
     text-decoration: none;
   }
 
+  #app a:hover {
+    text-decoration: underline;
+  }
+
   .logo {
     width: 100px;
     height: 100px

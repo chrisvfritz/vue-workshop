@@ -176,7 +176,7 @@ const exercises = [
       <h4>Option 1: Build a funny tip calculator</h4>
       <p>Build about 3 form inputs for a customer in a restaurant, asking them questions such as whether they brought a baby with them, if they tried to hit on any of the wait staff, how many substitutions they asked for, etc. Using this information, as well as the total of their bill, calculate a recommended tip in a computed value and display it on the page.</p>
 
-      <h4>Option 2: Build a CSS color previewer<h4>
+      <h4>Option 2: Build a CSS color previewer</h4>
       <p>Have an input for a user to enter a valid CSS color, then in a color swatch below the input, show the user what the color they entered actually looks like. <strong>Note</strong>: You'll find <a href="http://vuejs.org/guide/class-and-style.html#Binding-Inline-Styles" target="_blank">inline style binding</a> very useful, so check out those docs!</p>
     `
   },
@@ -193,7 +193,7 @@ const exercises = [
             in an array, using the value of that item in the contents
             of the element.
             -->
-            <li v-for="(todo, index) in todos">
+            <li v-for="(index, todo) in todos">
               <span>{{ todo.text }}</span>
               <button @click="removeTodo(index)">X</button>
             </li>
