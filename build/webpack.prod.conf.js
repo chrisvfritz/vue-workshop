@@ -83,6 +83,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new PrerenderSpaPlugin(
       path.join(__dirname, '../dist'),
       [
+        '/',
         '/exercises/binding-basics',
         '/exercises/computed-values',
         '/exercises/lists',
