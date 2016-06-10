@@ -38,6 +38,8 @@
   import ExerciseNavigation from 'src/components/exercise-navigation'
 
   export default {
+    replace: false,
+
     components: {
       Layout, ExerciseNavigation
     }
