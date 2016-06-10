@@ -14,7 +14,7 @@
 
     <section>
       <h2>How this works</h2>
-      <p>For each set of exercises in this workshop, you'll:</p>
+      <p>For each set of exercises in the workshop, you'll:</p>
       <ol>
         <li><strong>See complete code examples</strong> and try them out in your browser</li>
         <li><strong>Browse beautiful docs</strong> to expand your understanding</li>
