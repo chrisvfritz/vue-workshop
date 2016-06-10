@@ -3,6 +3,7 @@
 
     <adjacent-exercise-links
       :current-exercise="exercise"
+      tooltip-direction="bottom"
     ></adjacent-exercise-links>
 
     <section>
@@ -74,6 +75,11 @@
         When you're done building your app, show it to someone else in the workshop, so they can test it out and make sure it works.
       </strong>
     </section>
+
+    <adjacent-exercise-links
+      :current-exercise="exercise"
+      tooltip-direction="top"
+    ></adjacent-exercise-links>
   </layout>
 </template>
 

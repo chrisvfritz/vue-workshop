@@ -65,11 +65,19 @@
   // CONTENT
   // -------
 
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
   body {
     font-family: 'Merriweather';
     font-weight: 300;
-    line-height: 1.7;
     color: $body-font-color;
+    overflow-x: hidden;
+  }
+
+  body, i.fa {
+    line-height: 1.7;
   }
 
   h1,h2,h3,h4,h5,h6 {
