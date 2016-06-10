@@ -12,6 +12,6 @@
   &lt;!-- CODE FROM EXAMPlES GOES HERE! --&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-    <p>There are also more complicated systems for building and using Vue components, most notably using npm and Webpack, but we'll be starting with the simplest possible use of Vue, which will be applicable in most applications.</p>
+    <p>There are also more complicated systems for building and using Vue components, most notably <a href="https://github.com/vuejs-templates/webpack" target="_blank">using npm and Webpack</a>, but we'll be starting with the simplest possible use of Vue, which will be applicable in most applications.</p>
   </section>
 </template>
