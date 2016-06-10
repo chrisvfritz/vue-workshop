@@ -8,7 +8,7 @@
     </section>
 
      <section>
-      <h2>Who is this for?</h2>
+      <h2>Who this is for</h2>
       <p>Anyone who'd like to learn more about Vue in a hands-on learning environment. All examples are compatible with both 1.x and the upcoming 2.0 release.</p>
     </section>
 
