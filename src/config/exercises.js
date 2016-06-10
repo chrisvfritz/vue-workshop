@@ -315,7 +315,13 @@ export default [
         exampleId: 1,
         title: 'Very simple todo app',
         bodyCode: `
-          <input v-model="newTodoText" v-on:keyup.enter="addTodo">
+          <h1>Todo List</h1>
+
+          <input
+            v-model="newTodoText"
+            v-on:keyup.enter="addTodo"
+            placeholder="Add a new todo"
+          >
           <ul>
             <!--
             v-for allows you to repeat an element for each item
