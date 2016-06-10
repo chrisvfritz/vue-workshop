@@ -103,7 +103,7 @@ export default [
             })
           </script>
         `,
-        itsWorkingWhen: 'the page updates with what you type into the input',
+        itsWorkingWhen: 'the greeting below the input updates to match what you type in the input',
         newConcepts: [
           {
             title: 'Form input bindings',
@@ -445,7 +445,7 @@ export default [
             url: 'http://vuejs.org/guide/conditional.html'
           },
           {
-            title: 'Lifecycle hook',
+            title: 'Lifecycle hooks',
             url: 'http://vuejs.org/api/#Options-Lifecycle-Hooks'
           }
         ],
