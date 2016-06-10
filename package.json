@@ -13,8 +13,10 @@
     "deploy": "surge -p dist -d vue-workshop.surge.sh"
   },
   "dependencies": {
+    "babel-runtime": "^6.0.0",
+    "highlight.js": "^9.4.0",
     "vue": "^1.0.21",
-    "babel-runtime": "^6.0.0"
+    "vue-router": "^0.7.13"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -42,6 +44,7 @@
     "json-loader": "^0.5.4",
     "node-sass": "^3.7.0",
     "ora": "^0.2.0",
+    "prerender-spa-plugin": "^1.0.0",
     "sass-loader": "^3.2.0",
     "shelljs": "^0.6.0",
     "url-loader": "^0.5.7",

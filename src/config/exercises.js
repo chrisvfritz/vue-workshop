@@ -29,18 +29,18 @@ const generateCodeProperties = (options) => {
   )
 
   return {
+    ...options,
     title: `Example ${options.exerciseId}.${options.exampleId}: ${options.title}`,
     code: headAndBodyCode,
-    url: 'http://jsbin.com/?html,output&html=' + encodedFullHTML,
-    itsWorkingWhen: options.itsWorkingWhen,
-    newConcepts: options.newConcepts,
-    newPrereqJavaScript: options.newPrereqJavaScript
+    url: 'http://jsbin.com/?html,output&html=' + encodedFullHTML
   }
 }
 
 export default [
   {
     title: '1. Basic data binding and reactivity',
+    slug: 'binding-basics',
+    setup: 'simple',
     examples: [
       generateCodeProperties({
         exerciseId: 1,
@@ -242,6 +242,8 @@ export default [
   },
   {
     title: '2. Computed values',
+    slug: 'computed-values',
+    setup: 'simple',
     examples: [
       generateCodeProperties({
         exerciseId: 2,
@@ -305,6 +307,8 @@ export default [
   },
   {
     title: '3. Lists',
+    slug: 'lists',
+    setup: 'simple',
     examples: [
       generateCodeProperties({
         exerciseId: 3,
@@ -378,6 +382,8 @@ export default [
   },
   {
     title: '4. Lifecycle hooks, conditional rendering, and Ajax fetching',
+    slug: 'vue-resource',
+    setup: 'simple',
     examples: [
       generateCodeProperties({
         exerciseId: 4,
