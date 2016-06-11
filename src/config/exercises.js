@@ -61,7 +61,7 @@ export default [
             })
           </script>
         `,
-        itsWorkingWhen: 'you see "Hello world!" in the browser.',
+        itsWorkingWhen: 'you see "Hello world!" in the browser',
         newConcepts: [
           {
             title: 'Hello world example',
@@ -372,6 +372,87 @@ export default [
           {
             title: 'Arrays',
             url: 'http://www.w3schools.com/js/js_arrays.asp'
+          }
+        ]
+      }),
+      generateCodeProperties({
+        exerciseId: 3,
+        exampleId: 2,
+        title: 'Drag & drop leaderboard',
+        headCode: `
+          <style>
+            [draggable] {
+              cursor: move;
+              cursor: -webkit-grab;
+              cursor: -moz-grab;
+              cursor: grab;
+              -khtml-user-drag: element;
+              -webkit-user-drag: element;
+              -moz-user-select:none;
+              -khtml-user-select: none;
+              -webkit-user-select: none;
+            }
+          </style>
+        `,
+        bodyCode: `
+          <h1>Leaderboard</h1>
+
+          <p>Drag and drop people in the list to reorder them.</p>
+
+          <ol>
+            <li
+              v-for="(index, person) in leaderboard"
+              v-bind:data-index="index"
+              v-on:dragstart="dragStart"
+              v-on:dragenter="dragEnter"
+              draggable="true"
+            >
+              {{ person }}
+            </li>
+          </ol>
+
+          <script>
+            new Vue({
+              el: 'body',
+
+              data: {
+                leaderboard: [
+                  'Ramon', 'Alexis', 'Firmo', 'Elizabeth', 'Joona'
+                ],
+                movingPersonIndex: null
+              },
+
+              methods: {
+                dragStart: function (event) {
+                  // Set the index of the dragged person
+                  this.movingPersonIndex = event.target.dataset.index
+
+                  // Hacky, but needed for drag & drop to work in some browsers
+                  event.dataTransfer.setData('foo', 'bar')
+                },
+                dragEnter: function (event) {
+                  // Get the index of the item we dragged over
+                  var enteredIndex = event.target.dataset.index
+                  // Get the person by their current index
+                  var movingPerson = this.leaderboard[this.movingPersonIndex]
+
+                  // Move dragged person to their new location
+                  this.leaderboard.splice(this.movingPersonIndex, 1)
+                  this.leaderboard.splice(enteredIndex, 0, movingPerson)
+
+                  // Update the index of the person being dragged
+                  this.movingPersonIndex = enteredIndex
+                }
+              }
+            })
+          </script>
+        `,
+        itsWorkingWhen: 'you can drag and drop people in the list to reorder them',
+        newConcepts: [],
+        newPrereqJavaScript: [
+          {
+            title: 'HTML drag & drop API',
+            url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API'
           }
         ]
       })

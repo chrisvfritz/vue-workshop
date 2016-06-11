@@ -21,7 +21,7 @@
           <h4 :data-anchor-prefix="example.title">
             Before you start
           </h4>
-          <p>Make sure you're familiar with the following JavaScript features:</p>
+          <p>This example assumes familiarity with the following JavaScript features:</p>
           <ul>
             <li v-for="concept in example.newPrereqJavaScript">
               <a :href="concept.url" target="_blank">
@@ -39,7 +39,7 @@
         <h4 :data-anchor-prefix="example.title">
           It's working when...
         </h4>
-        <p>...{{ example.itsWorkingWhen }}</p>
+        <p>...{{ example.itsWorkingWhen }}.</p>
 
         <div v-if="example.newConcepts.length !== 0">
           <h4 :data-anchor-prefix="example.title">
