@@ -6,16 +6,16 @@
   >
     <a
       v-if="prevExercise"
-      :href="'/exercises/' + prevExercise.slug"
+      v-link="'/exercises/' + prevExercise.slug"
       :title="prevExercise.title"
     ><img src="../assets/left-24.png" alt="Left"></a>
     <a
-      href="/"
+      v-link="'/'"
       title="Table of contents"
     ><img src="../assets/house-24.png" alt="House"></a>
     <a
       v-if="nextExercise"
-      :href="'/exercises/' + nextExercise.slug"
+      v-link="'/exercises/' + nextExercise.slug"
       :title="nextExercise.title"
     ><img src="../assets/right-24.png" alt="Right"></a>
   </section>

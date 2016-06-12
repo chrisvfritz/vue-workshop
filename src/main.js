@@ -6,7 +6,7 @@ import configureRoutes from './routes'
 Vue.use(VueRouter)
 const router = new VueRouter({
   history: true,
-  saveScrollPosition: true,
+  saveScrollPosition: false,
   linkActiveClass: 'active'
 })
 configureRoutes(router)

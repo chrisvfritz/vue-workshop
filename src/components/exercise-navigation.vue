@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="exercise in exercises">
-      <a :href="'/exercises/' + exercise.slug">
+      <a v-link="'/exercises/' + exercise.slug">
         {{ exercise.title }}
       </a>
     </li>

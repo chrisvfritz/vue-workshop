@@ -20,7 +20,7 @@ const generateCodeProperties = (options) => {
 <html>
 <head>
   <title>My Vue App</title>
-  <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>${options.headCode ? '\n  ' + noramilizeExampleCodeWhitespace(options.headCode, 2) : ''}
+  <script src="https://cdn.jsdelivr.net/vue/1.0.24/vue.js"></script>${options.headCode ? '\n  ' + noramilizeExampleCodeWhitespace(options.headCode, 2) : ''}
 </head>
 <body>
   ${noramilizeExampleCodeWhitespace(options.bodyCode, 2)}
@@ -374,88 +374,93 @@ export default [
             url: 'http://www.w3schools.com/js/js_arrays.asp'
           }
         ]
-      }),
-      generateCodeProperties({
-        exerciseId: 3,
-        exampleId: 2,
-        title: 'Drag & drop leaderboard',
-        headCode: `
-          <style>
-            [draggable] {
-              cursor: move;
-              cursor: -webkit-grab;
-              cursor: -moz-grab;
-              cursor: grab;
-              -khtml-user-drag: element;
-              -webkit-user-drag: element;
-              -moz-user-select:none;
-              -khtml-user-select: none;
-              -webkit-user-select: none;
-            }
-          </style>
-        `,
-        bodyCode: `
-          <h1>Leaderboard</h1>
+      }) // ,
 
-          <p>Drag and drop people in the list to reorder them.</p>
+      // COMMENTING THIS OUT FOR NOW, AS LEO CONVINCED ME THAT
+      // THIS BELONGED IN A GENERAL SHOWCASE RATHER THAN A
+      // DEMO OF HOW TO USE LISTS IN VUE
 
-          <ol>
-            <li
-              v-for="(index, person) in leaderboard"
-              v-bind:data-index="index"
-              v-on:dragstart="dragStart"
-              v-on:dragenter="dragEnter"
-              draggable="true"
-            >
-              {{ person }}
-            </li>
-          </ol>
+      // generateCodeProperties({
+      //   exerciseId: 3,
+      //   exampleId: 2,
+      //   title: 'Drag & drop leaderboard',
+      //   headCode: `
+      //     <style>
+      //       [draggable] {
+      //         cursor: move;
+      //         cursor: -webkit-grab;
+      //         cursor: -moz-grab;
+      //         cursor: grab;
+      //         -khtml-user-drag: element;
+      //         -webkit-user-drag: element;
+      //         -moz-user-select:none;
+      //         -khtml-user-select: none;
+      //         -webkit-user-select: none;
+      //       }
+      //     </style>
+      //   `,
+      //   bodyCode: `
+      //     <h1>Leaderboard</h1>
 
-          <script>
-            new Vue({
-              el: 'body',
+      //     <p>Drag and drop people in the list to reorder them.</p>
 
-              data: {
-                leaderboard: [
-                  'Ramon', 'Alexis', 'Firmo', 'Elizabeth', 'Joona'
-                ],
-                movingPersonIndex: null
-              },
+      //     <ol>
+      //       <li
+      //         v-for="(index, person) in leaderboard"
+      //         v-bind:data-index="index"
+      //         v-on:dragstart="dragStart"
+      //         v-on:dragenter="dragEnter"
+      //         draggable="true"
+      //       >
+      //         {{ person }}
+      //       </li>
+      //     </ol>
 
-              methods: {
-                dragStart: function (event) {
-                  // Set the index of the dragged person
-                  this.movingPersonIndex = event.target.dataset.index
+      //     <script>
+      //       new Vue({
+      //         el: 'body',
 
-                  // Hacky, but needed for drag & drop to work in some browsers
-                  event.dataTransfer.setData('foo', 'bar')
-                },
-                dragEnter: function (event) {
-                  // Get the index of the item we dragged over
-                  var enteredIndex = event.target.dataset.index
-                  // Get the person by their current index
-                  var movingPerson = this.leaderboard[this.movingPersonIndex]
+      //         data: {
+      //           leaderboard: [
+      //             'Ramon', 'Alexis', 'Firmo', 'Elizabeth', 'Joona'
+      //           ],
+      //           movingPersonIndex: null
+      //         },
 
-                  // Move dragged person to their new location
-                  this.leaderboard.splice(this.movingPersonIndex, 1)
-                  this.leaderboard.splice(enteredIndex, 0, movingPerson)
+      //         methods: {
+      //           dragStart: function (event) {
+      //             // Set the index of the dragged person
+      //             this.movingPersonIndex = event.target.dataset.index
 
-                  // Update the index of the person being dragged
-                  this.movingPersonIndex = enteredIndex
-                }
-              }
-            })
-          </script>
-        `,
-        itsWorkingWhen: 'you can drag and drop people in the list to reorder them',
-        newConcepts: [],
-        newPrereqJavaScript: [
-          {
-            title: 'HTML drag & drop API',
-            url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API'
-          }
-        ]
-      })
+      //             // Hacky, but needed for drag & drop to work in some browsers
+      //             event.dataTransfer.setData('foo', 'bar')
+      //           },
+      //           dragEnter: function (event) {
+      //             // Get the index of the item we dragged over
+      //             var enteredIndex = event.target.dataset.index
+      //             // Get the person by their current index
+      //             var movingPerson = this.leaderboard[this.movingPersonIndex]
+
+      //             // Move dragged person to their new location
+      //             this.leaderboard.splice(this.movingPersonIndex, 1)
+      //             this.leaderboard.splice(enteredIndex, 0, movingPerson)
+
+      //             // Update the index of the person being dragged
+      //             this.movingPersonIndex = enteredIndex
+      //           }
+      //         }
+      //       })
+      //     </script>
+      //   `,
+      //   itsWorkingWhen: 'you can drag and drop people in the list to reorder them',
+      //   newConcepts: [],
+      //   newPrereqJavaScript: [
+      //     {
+      //       title: 'HTML drag & drop API',
+      //       url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API'
+      //     }
+      //   ]
+      // })
     ],
     modification: `
       <p>Building on example 3.1, add a new property to new todos called <code>isComplete</code>, which should start as <code>false</code>. Then add a checkbox input next to each item, which is bound to that item's <code>isComplete</code> property with <code>v-model</code>.</p>
@@ -477,7 +482,7 @@ export default [
         exampleId: 1,
         title: 'Fetching Star Wars planets from an API',
         headCode: `
-          <script src="https://cdn.jsdelivr.net/vue.resource/latest/vue-resource.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/vue.resource/0.7.3/vue-resource.min.js"></script>
         `,
         bodyCode: `
           <h1>Planets in Star Wars</h1>
@@ -548,7 +553,7 @@ export default [
         exampleId: 2,
         title: 'Searching for upcoming events with the Lansing.Codes API',
         headCode: `
-          <script src="https://cdn.jsdelivr.net/vue.resource/latest/vue-resource.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/vue.resource/0.7.3/vue-resource.min.js"></script>
           <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
         `,
         bodyCode: `
@@ -637,11 +642,127 @@ export default [
       })
     ],
     modification: `
-      <p>In example 4.2, use <code>{{ nextEvent | json }}</code> in your HTML to inspect the contents of <code>nextEvent</code> and display more information about the event on the page, such as which meetup it's from and the relative time until the event starts.</p>
+      <p>In example 4.2, use <code>{{ nextEvent | json }}</code> (or just <code>nextEvent</code> for 2.0) in your HTML to inspect the contents of <code>nextEvent</code> and display more information about the event on the page, such as which meetup it's from and the relative time until the event starts.</p>
     `,
     buildFromScratch: `
       <h4>Build an app that answers yes/no questions</h4>
       <p>We won't just answer yes or no however. We'll display funny gifs using <a href="http://yesno.wtf/api" target="_blank">yesno.wtf/api</a>. Display the gif on the page once you've pulled it in. Remember that <code>v-bind</code> will be useful for binding data in your app to an image's <code>src</code> attribute.</p>
     `
-  }
+  } // ,
+  // {
+  //   title: '5. Reusable components',
+  //   slug: 'components-intro',
+  //   setup: 'simple',
+  //   examples: [
+  //     generateCodeProperties({
+  //       exerciseId: 5,
+  //       exampleId: 1,
+  //       title: 'Reusable counter',
+  //       bodyCode: `
+  //         <p v-if="counterIsDone">
+  //           It's been 5 seconds.
+  //         </p>
+  //         <p v-else>
+  //           It will have been 5 seconds since I loaded this page in
+  //           <counter
+  //             v-bind:initial-value="5"
+  //             v-bind:increment-by="-1"
+  //             v-bind:stop-at="0"
+  //             v-bind:done="counterCallback"
+  //           ></counter>
+  //           seconds.
+  //         </p>
+
+  //         <script>
+  //           Vue.component('counter', {
+  //             template: '<span>{{ number }}</span>',
+
+  //             props: {
+  //               initialValue: {
+  //                 type: Number,
+  //                 default: 0
+  //               },
+  //               incrementBy: {
+  //                 type: Number,
+  //                 default: 1
+  //               },
+  //               interval: {
+  //                 type: Number,
+  //                 default: 1000
+  //               },
+  //               stopAt: {
+  //                 type: Number
+  //               },
+  //               done: {
+  //                 type: Function
+  //               }
+  //             },
+
+  //             data: function () {
+  //               return {
+  //                 number: this.initialValue
+  //               }
+  //             },
+
+  //             created: function () {
+  //               this.counter = setInterval(function () {
+  //                 this.number += this.incrementBy
+  //                 if (this.stopAt === this.number) {
+  //                   clearInterval(this.counter)
+  //                   this.done && this.done()
+  //                 }
+  //               }.bind(this), this.interval)
+  //             },
+
+  //             beforeDestroy: function () {
+  //               clearInterval(this.counter)
+  //             }
+  //           })
+
+  //           new Vue({
+  //             el: 'body',
+
+  //             data: {
+  //               counterIsDone: false
+  //             },
+
+  //             methods: {
+  //               counterCallback: function () {
+  //                 this.counterIsDone = true
+  //               }
+  //             }
+  //           })
+  //         </script>
+  //       `,
+  //       itsWorkingWhen: 'planets display shortly after the page loads',
+  //       newConcepts: [
+  //         {
+  //           title: 'vue-resource',
+  //           url: 'https://github.com/vuejs/vue-resource/blob/master/docs/http.md'
+  //         },
+  //         {
+  //           title: 'Conditional rendering',
+  //           url: 'http://vuejs.org/guide/conditional.html'
+  //         },
+  //         {
+  //           title: 'Lifecycle hooks',
+  //           url: 'http://vuejs.org/api/#Options-Lifecycle-Hooks'
+  //         }
+  //       ],
+  //       newPrereqJavaScript: [
+  //         {
+  //           title: 'Promises',
+  //           url: 'http://www.html5rocks.com/en/tutorials/es6/promises/'
+  //         }
+  //       ]
+  //     })
+  //   ],
+  //   modification: `
+  //     <p>In example 4.2, use <code>{{ nextEvent | json }}</code> in your HTML to inspect the contents of <code>nextEvent</code> and display more information about the event on the page, such as which meetup it's from and the relative time until the event starts.</p>
+  //   `,
+  //   buildFromScratch: `
+  //     <h4>Build an app that answers yes/no questions</h4>
+  //     <p>We won't just answer yes or no however. We'll display funny gifs using <a href="http://yesno.wtf/api" target="_blank">yesno.wtf/api</a>. Display the gif on the page once you've pulled it in. Remember that <code>v-bind</code> will be useful for binding data in your app to an image's <code>src</code> attribute.</p>
+  //   `
+  // }
 ]

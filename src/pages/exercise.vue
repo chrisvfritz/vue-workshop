@@ -7,20 +7,26 @@
     ></adjacent-exercise-links>
 
     <section>
-      <h1>{{{ exercise.title }}}</h1>
+      <anchored-heading :importance="1">
+        {{{ exercise.title }}}
+      </anchored-heading>
     </section>
 
     <section :is="instructions"></section>
 
     <section>
-      <h2>Examples</h2>
+      <anchored-heading :importance="2">
+        Examples
+      </anchored-heading>
       <div v-for="example in exercise.examples">
-        <h3>{{{ example.title }}}</h3>
+        <anchored-heading :importance="3">
+          {{{ example.title }}}
+        </anchored-heading>
 
         <div v-if="example.newPrereqJavaScript.length !== 0">
-          <h4 :data-anchor-prefix="example.title">
+          <anchored-heading :importance="4" :prefix="example.title">
             Before you start
-          </h4>
+          </anchored-heading>
           <p>This example assumes familiarity with the following JavaScript features:</p>
           <ul>
             <li v-for="concept in example.newPrereqJavaScript">
@@ -31,20 +37,23 @@
           </ul>
         </div>
 
-        <h4 :data-anchor-prefix="example.title">
+        <anchored-heading :importance="4" :prefix="example.title">
           The code
-        </h4>
-        <pre><a :href="example.url" target="_blank"><code>{{ example.code }}</code></a></pre>
+        </anchored-heading>
+        <code-block
+          :code="example.code"
+          :href="example.url"
+        ></code-block>
 
-        <h4 :data-anchor-prefix="example.title">
+        <anchored-heading :importance="4" :prefix="example.title">
           It's working when...
-        </h4>
+        </anchored-heading>
         <p>...{{ example.itsWorkingWhen }}.</p>
 
         <div v-if="example.newConcepts.length !== 0">
-          <h4 :data-anchor-prefix="example.title">
+          <anchored-heading :importance="4" :prefix="example.title">
             New concepts &amp; recommended reading
-          </h4>
+          </anchored-heading>
           <ul>
             <li v-for="concept in example.newConcepts">
               <a :href="concept.url" target="_blank">
@@ -57,9 +66,9 @@
         <hr>
       </div>
 
-      <h3 :data-anchor-prefix="exercise.title">
+      <anchored-heading :importance="3" :prefix="exercise.title">
         Modification challenge
-      </h3>
+      </anchored-heading>
       {{{ exercise.modification }}}
       <strong>
         When you're done building your app, show it to someone else in the workshop, so they can test it out and make sure it works.
@@ -67,9 +76,9 @@
 
       <hr>
 
-      <h3 :data-anchor-prefix="exercise.title">
+      <anchored-heading :importance="3" :prefix="exercise.title">
         Build-from-scratch challenge
-      </h3>
+      </anchored-heading>
       {{{ exercise.buildFromScratch }}}
       <strong>
         When you're done building your app, show it to someone else in the workshop, so they can test it out and make sure it works.
@@ -89,19 +98,34 @@
   import Layout from 'src/layouts/main'
   import InstructionsSimple from 'src/components/instructions-simple'
   import AdjacentExerciseLinks from 'src/components/adjacent-exercise-links'
+  import CodeBlock from 'src/components/code-block'
+  import AnchoredHeading from 'src/components/anchored-heading'
+
+  const exerciseBySlug = slug => {
+    return exercises.filter(exercise => {
+      return exercise.slug === slug
+    })[0]
+  }
 
   export default {
     replace: false,
 
     components: {
-      Layout, InstructionsSimple, AdjacentExerciseLinks
+      Layout, InstructionsSimple, AdjacentExerciseLinks, CodeBlock,
+      AnchoredHeading
     },
 
     data () {
       return {
-        exercise: exercises.filter(exercise => {
-          return exercise.slug === this.$route.params.exercise
-        })[0]
+        exercise: exerciseBySlug(this.$route.params.exercise)
+      }
+    },
+
+    route: {
+      data (transition) {
+        transition.next({
+          exercise: exerciseBySlug(transition.to.params.exercise)
+        })
       }
     },
 

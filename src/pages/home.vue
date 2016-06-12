@@ -2,18 +2,24 @@
   <layout>
     <section>
       <header>
-        <h1>Vue.js workshop</h1>
+        <anchored-heading :importance="1">
+          Vue.js workshop
+        </anchored-heading>
         <img src="../assets/logo.png">
       </header>
     </section>
 
      <section>
-      <h2>Who this is for</h2>
-      <p>Anyone who'd like to learn more about Vue in a hands-on learning environment. All examples are compatible with both 1.x and the upcoming 2.0 release.</p>
+      <anchored-heading :importance="2">
+        Who this is for
+      </anchored-heading>
+      <p>Anyone who'd like to learn more about Vue in a hands-on learning environment. All examples should be compatible with both 1.x and the upcoming 2.0 release.</p>
     </section>
 
     <section>
-      <h2>How it works</h2>
+      <anchored-heading :importance="2">
+        How it works
+      </anchored-heading>
       <p>For each set of exercises in the workshop, you'll:</p>
       <ol>
         <li><strong>See complete code examples</strong> and try them out in your browser</li>
@@ -24,7 +30,9 @@
     </section>
 
     <section>
-      <h2>Table of contents</h2>
+      <anchored-heading :importance="2">
+        Table of contents
+      </anchored-heading>
       <nav>
         <exercise-navigation></exercise-navigation>
       </nav>
@@ -35,12 +43,13 @@
 <script>
   import Layout from 'src/layouts/main'
   import ExerciseNavigation from 'src/components/exercise-navigation'
+  import AnchoredHeading from 'src/components/anchored-heading'
 
   export default {
     replace: false,
 
     components: {
-      Layout, ExerciseNavigation
+      Layout, ExerciseNavigation, AnchoredHeading
     }
   }
 </script>

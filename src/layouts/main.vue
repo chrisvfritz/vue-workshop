@@ -11,53 +11,6 @@
   </footer>
 </template>
 
-<script>
-  import hljs from 'highlight.js'
-
-  export default {
-    ready () {
-      this.highlightCodeBlocks()
-      this.addHeadingAnchors()
-    },
-
-    methods: {
-      highlightCodeBlocks () {
-        Array.from(
-          document.querySelectorAll('pre code')
-        ).forEach(codeBlock => {
-          hljs.highlightBlock(codeBlock)
-        })
-      },
-      addHeadingAnchors () {
-        Array.from(
-          document.querySelectorAll('h1,h2,h3,h4,h5,h6')
-        ).forEach(heading => {
-          const sanitizeForAnchor = text => {
-            return text
-              .trim()
-              .toLowerCase()
-              .replace(/\W+/g, '-')
-              .replace(/\-+/g, '-')
-              .replace(/^\W+/g, '')
-              .replace(/\W+$/g, '')
-          }
-
-          if (!heading.dataset.anchorized) {
-            const prefix = heading.dataset.anchorPrefix ? sanitizeForAnchor(heading.dataset.anchorPrefix) + '-' : ''
-            const headingId = prefix + sanitizeForAnchor(heading.textContent)
-
-            heading.innerHTML = `
-              <a name="${headingId}" href="#${headingId}">
-                ${heading.innerHTML}
-              </a>
-            `
-          }
-        })
-      }
-    }
-  }
-</script>
-
 <style lang="scss">
   @import '../design';
 
@@ -213,7 +166,7 @@
     }
   }
 
-  .xml {
+  .xml, .html {
     .css, .javascript {
       opacity: 1;
     }
