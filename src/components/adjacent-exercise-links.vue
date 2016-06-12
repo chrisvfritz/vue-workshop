@@ -8,16 +8,16 @@
       v-if="prevExercise"
       :href="'/exercises/' + prevExercise.slug"
       :title="prevExercise.title"
-    >⇦</a>
+    ><img src="../assets/left-24.png" alt="Left"></a>
     <a
       href="/"
       title="Table of contents"
-    ><i class="fa fa-home"></i></a>
+    ><img src="../assets/house-24.png" alt="House"></a>
     <a
       v-if="nextExercise"
       :href="'/exercises/' + nextExercise.slug"
       :title="nextExercise.title"
-    >⇨</a>
+    ><img src="../assets/right-24.png" alt="Right"></a>
   </section>
 </template>
 
@@ -77,6 +77,11 @@
       padding: $nav-item-padding-vertical $nav-item-padding-horizontal;
       font-size: $nav-links-font-size;
       position: relative;
+
+      img {
+        width: 1em;
+        vertical-align: middle;
+      }
 
       &:before {
         display: none;
