@@ -10,7 +10,7 @@
     "test": "",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "predeploy": "npm run build",
-    "deploy": "surge -p dist -d vue-workshop.surge.sh"
+    "deploy": "surge --project dist --domain vue-workshop.surge.sh"
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
