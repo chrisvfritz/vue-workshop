@@ -132,12 +132,12 @@
 
     &:before {
       left: 0;
-      background-image: linear-gradient(to left, transparent, $code-block-background-color);
+      background-image: linear-gradient(to left, $gradient-transparent, $code-block-background-color);
     }
 
     &:after {
       right: 0;
-      background-image: linear-gradient(to right, transparent, $code-block-background-color);
+      background-image: linear-gradient(to right, $gradient-transparent, $code-block-background-color);
     }
 
     code {

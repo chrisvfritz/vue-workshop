@@ -19,3 +19,9 @@ $body-link-color: #3AA979;
 
 // Code Blocks
 $code-block-background-color: #fbfff3;
+
+// Hacks
+// iOS doesn't understand the keyword "transparent" in
+// the context of gradients, so this is used instead.
+// https://developer.apple.com/library/safari/documentation/InternetWeb/Conceptual/SafariVisualEffectsProgGuide/Gradients/Gradient.html
+$gradient-transparent: rgba(255,255,255,0);
