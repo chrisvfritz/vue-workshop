@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import exercises from 'src/config/exercises'
+  import exercises from 'src/data/exercises'
 
   export default {
     data () {

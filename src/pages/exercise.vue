@@ -93,7 +93,7 @@
 </template>
 
 <script>
-  import exercises from 'src/config/exercises'
+  import exercises from 'src/data/exercises'
 
   import Layout from 'src/layouts/main'
   import InstructionsSimple from 'src/components/instructions-simple'
