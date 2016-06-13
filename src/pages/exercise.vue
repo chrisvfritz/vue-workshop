@@ -101,7 +101,7 @@
   import CodeBlock from 'src/components/code-block'
   import AnchoredHeading from 'src/components/anchored-heading'
 
-  const exerciseBySlug = slug => {
+  const findExerciseBySlug = slug => {
     return exercises.filter(exercise => {
       return exercise.slug === slug
     })[0]
@@ -117,14 +117,14 @@
 
     data () {
       return {
-        exercise: exerciseBySlug(this.$route.params.exercise)
+        exercise: findExerciseBySlug(this.$route.params.exercise)
       }
     },
 
     route: {
       data (transition) {
         transition.next({
-          exercise: exerciseBySlug(transition.to.params.exercise)
+          exercise: findExerciseBySlug(transition.to.params.exercise)
         })
       }
     },
