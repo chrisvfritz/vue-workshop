@@ -87,7 +87,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         '/exercises/binding-basics',
         '/exercises/computed-values',
         '/exercises/lists',
-        '/exercises/vue-resource'
+        '/exercises/ajax',
+        '/exercises/simple-components'
       ]
     )
   ]
