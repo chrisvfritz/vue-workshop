@@ -56,7 +56,7 @@
 
 <style lang="scss" scoped>
   section {
-    max-width: 635px;
+    max-width: 600px;
 
     &:first-of-type {
       margin-top: 0;
