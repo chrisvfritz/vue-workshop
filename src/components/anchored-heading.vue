@@ -1,9 +1,11 @@
 <template>
-  <heading :importance="importance">
-    <a v-el:heading-anchor :name="headingId" :href="'#' + headingId">
-      <slot v-ref="headingContent"></slot>
-    </a>
-  </heading>
+  <div>
+    <heading :importance="importance">
+      <a v-el:heading-anchor :name="headingId" :href="'#' + headingId">
+        <slot v-ref="headingContent"></slot>
+      </a>
+    </heading>
+  </div>
 </template>
 
 <script>

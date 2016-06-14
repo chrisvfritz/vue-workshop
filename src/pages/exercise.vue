@@ -8,7 +8,7 @@
 
     <section>
       <anchored-heading :importance="1">
-        {{{ exercise.title }}}
+        {{ exercise.id }}. {{{ exercise.title }}}
       </anchored-heading>
     </section>
 
@@ -20,6 +20,7 @@
       </anchored-heading>
       <div v-for="example in exercise.examples">
         <anchored-heading :importance="3">
+          Example {{ exercise.id }}.{{ example.id }}:
           {{{ example.title }}}
         </anchored-heading>
 

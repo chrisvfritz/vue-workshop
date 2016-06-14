@@ -55,6 +55,10 @@ module.exports = {
         loader: 'json'
       },
       {
+        test: /\.ya?ml$/,
+        loaders: ['json', 'yaml']
+      },
+      {
         test: /\.html$/,
         loader: 'vue-html'
       },

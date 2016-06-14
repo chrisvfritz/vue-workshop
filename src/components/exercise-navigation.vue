@@ -1,14 +1,14 @@
 <template>
-  <ul>
+  <ol>
     <li v-for="exercise in exercises">
       <a v-link="'/exercises/' + exercise.slug">
         {{ exercise.title }}
       </a>
     </li>
     <li class="coming-soon-muted">
-      {{ exercises.length + 1 }}. <em>More coming soon!</em>
+      <em>More coming soon!</em>
     </li>
-  </ul>
+  </ol>
 </template>
 
 <script>

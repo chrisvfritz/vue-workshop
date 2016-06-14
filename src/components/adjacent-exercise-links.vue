@@ -7,7 +7,7 @@
     <a
       v-if="prevExercise"
       v-link="'/exercises/' + prevExercise.slug"
-      :title="prevExercise.title"
+      :title="prevExercise.id + '. ' + prevExercise.title"
     ><img src="../assets/left-24.png" alt="Left"></a>
     <a
       v-link="'/'"
@@ -16,7 +16,7 @@
     <a
       v-if="nextExercise"
       v-link="'/exercises/' + nextExercise.slug"
-      :title="nextExercise.title"
+      :title="nextExercise.id + '. ' + nextExercise.title"
     ><img src="../assets/right-24.png" alt="Right"></a>
   </section>
 </template>

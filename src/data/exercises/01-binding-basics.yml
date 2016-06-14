@@ -1,0 +1,167 @@
+title: Basic data binding and reactivity
+setup: simple
+examples:
+
+  -
+    title: Basic working Vue app
+    bodyCode: |
+      <p>{{ greeting }} world!</p>
+
+      <script>
+        new Vue({
+          // We're defining the app as the entire body
+          el: 'body',
+
+          // This is the data we're using in our app
+          data: {
+            greeting: 'Hello'
+          }
+        })
+      </script>
+    itsWorkingWhen: you see "Hello world!" in the browser
+    newConcepts:
+      -
+        title: Hello world example
+        url: http://vuejs.org/guide/index.html
+      -
+        title: Data binding
+        url: http://vuejs.org/guide/syntax.html
+    newPrereqJavaScript:
+      -
+        title: Strings
+        url: http://www.w3schools.com/jsref/jsref_obj_string.asp
+      -
+        title: Objects
+        url: http://www.w3schools.com/js/js_objects.asp
+
+  -
+    title: Data binding
+    bodyCode: |
+      <!--
+      v-model binds data to a form input
+      -->
+      <input v-model="greeting">
+      <p>{{ greeting }} world!</p>
+
+      <script>
+        new Vue({
+          el: 'body',
+          data: {
+            greeting: 'Hello'
+          }
+        })
+      </script>
+    itsWorkingWhen: the greeting below the input updates to match what you type in the input
+    newConcepts:
+      -
+        title: Form input bindings
+        url: http://vuejs.org/guide/forms.html
+
+  -
+    title: What <code>v-model</code> is doing
+    bodyCode: |
+      <!--
+      This code does exactly the same thing as the previous code
+      example, but without v-model. This is to demonstrate what
+      v-model is actually doing, so it doesn't seem like magic.
+      -->
+      <input v-bind:value="message" v-on:input="updateMessage">
+      <p>{{ message }}</p>
+
+      <script>
+        new Vue({
+          el: 'body',
+          data: {
+            message: 'Hello world!'
+          },
+          methods: {
+            updateMessage: function (event) {
+              this.message = event.target.value
+            }
+          }
+        })
+      </script>
+    itsWorkingWhen: it works exactly like the previous example
+    newConcepts:
+      -
+        title: Intro to methods and events
+        url: http://vuejs.org/guide/events.html
+      -
+        title: <code>v-on</code> in depth
+        url: http://vuejs.org/api/#v-on
+      -
+        title: <code>v-bind</code> in depth
+        url: http://vuejs.org/api/#v-bind
+      -
+        title: Methods in depth
+        url: http://vuejs.org/api/#methods
+    newPrereqJavaScript:
+      -
+        title: Functions
+        url: http://www.w3schools.com/js/js_functions.asp
+      -
+        title: Events
+        url: http://www.w3schools.com/js/js_events.asp
+
+  -
+    title: Markdown generator
+    headCode: |
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+      <!--
+      The library above will help us convert markdown to HTML in
+      JavaScript. Don't know what Markdown is? It's a simple
+      markup language that's often used to write rich content
+      that will be hosted online, such as comments (like on
+      GitHub issues), README files, or blog posts.
+
+      Check out this link to learn more:
+      https://guides.github.com/features/mastering-markdown/
+      -->
+
+      <style>
+        textarea {
+          display: block;
+          width: 300px;
+        }
+      </style>
+    bodyCode: |
+      <h1>Markdown to HTML Converter</h1>
+
+      <textarea v-model="markdown" rows="10"></textarea>
+      <button v-on:click="generateHTML">
+        Generate HTML
+      </button>
+
+      <pre><code>{{ html }}</code></pre>
+
+      <script>
+        new Vue({
+          el: 'body',
+          data: {
+            markdown: '# This is some markdown\\n\\n- here\\'s\\n- a\\n- list\\n\\nClick the button below to turn me into HTML!',
+            html: '',
+          },
+          methods: {
+            generateHTML: function (event) {
+              this.html = marked(this.markdown)
+            }
+          }
+        })
+      </script>
+    itsWorkingWhen: you can click the button and it generates HTML that corresponds to content in the textarea
+
+modification: |
+  <p>You work on a social messaging site and people keep yelling at each other in all caps. Then the CEO had a great idea. If everything users type is translated to lower case, they won't be able to yell and everyone will be friendly and happy. Perfect solution, right? Use example 1.3 to build a proof-of-concept for an input that automatically translates everything to lower case.</p>
+
+buildFromScratch: |
+  <h4>Option 1: Build a chatbot</h4>
+  <p>Build an input that elicits a response anytime you <a target="_blank" href="http://vuejs.org/guide/events.html#Key-Modifiers">press enter within the input</a>. The response generated should be different depending on what the user entered. For example:</p>
+  <ul>
+    <li>if the user types "hi" or "hello", the response should be "Greetings human!"</li>
+    <li>if the user types "how are you?", the response should be "I am operating at 100% efficiency."</li>
+  </ul>
+  <p>Make up at least one more response. Fro anything you don't explicitly check for, display a random response from an a list of generic active listening phrases, such as "Interesting! Tell me more." or "I see...".</p>
+  <p>After the response is generated, the user's input should also clear so that they're free to type something else.</p>
+
+  <h4>Option 2: Build a username generator</h4>
+  <p>A lot of sites have limits on what characters are acceptable for a username. Build a simple app that allows users to type their full name into an input and when they press a "Generate username" button, it will turn their full name into what might be a valid username - for example, replacing spaces with dashes, lowercasing everything, removing special characters, etc. <strong>Note</strong>: It'll be useful to know how to use <a href="http://regexone.com/" target="_blank">regular expressions</a> for this one.</p>
