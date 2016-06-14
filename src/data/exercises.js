@@ -11,8 +11,8 @@ export default contextRequire.keys().map((filename, exerciseIndex) => {
       let headAndBodyCode = ''
       if (exampleData.headCode) {
         headAndBodyCode += '<!-- Add the code below to your head, after the Vue core library -->\n' +
-            exampleData.headCode.trim() +
-            '\n<!-- End of head code -->\n\n'
+          exampleData.headCode.trim() +
+          '\n<!-- End of head code -->\n\n'
       }
       headAndBodyCode += exampleData.bodyCode
 
