@@ -250,63 +250,76 @@ examples:
       <timer></timer>
       <timer></timer>
 
+      <!--
+      For templates that are really long, multiline strings can be
+      annoying, because they require backslashes at the end of every
+      line and lack any syntax highlighting.
+
+      In simple setups like this, one solution is to pull the template
+      out into a script of type "text/x-template", then reference the
+      template by an id in our component declaration.
+      -->
+      <script type="text/x-template" id="timer-template">
+        <div>
+          <div v-if="!timerStarted">
+            <!--
+            In HTML, the value of inputs of type "number" are still
+            strings, rather than actual numbers like you might expect.
+            To help compensate for this, Vue provides the "number"
+            attribute parameter for v-model, which automatically casts
+            the value of the input to a number for you.
+
+            In Vue 2.0, this will be done through a modifier instead.
+            That means instead of:
+
+            <input v-model="myNumber" number>
+
+            you will write:
+
+            <input v-model.number="myNumber">
+            -->
+            <input
+              v-if="!timerStarted"
+              v-model="countDownFromSeconds"
+              number type="number"
+            >
+            <button v-on:click="start">Start</button>
+          </div>
+          <div v-else>
+            <p v-if="!timerFinished">
+              <super-counter
+                v-bind:initial-value="countDownFromSeconds"
+                v-bind:increment-by="-1"
+                v-bind:stop-at="0"
+                v-bind:when-done="playAlert"
+              ></super-counter>
+              seconds
+            </p>
+            <p v-else>Alert!</p>
+            <button v-on:click="stop">Stop</button>
+            <!--
+            v-el allows us to assign a name to a unique element,
+            so that we can access it in our code with
+            this.$els.nameOfMyElement. You can think of this as
+            like giving an element an id, but scoped to the
+            component instance.
+
+            In Vue 2.0, v-el with be merged with v-ref, so that
+            for both HTML elements and Vue components, you will
+            assign a name with the v-ref attribute and then
+            access the element or component in your code through
+            this.$refs.
+            -->
+            <audio v-el:alert src="http://soundbible.com/mp3/Alarm%20Alert%20Effect-SoundBible.com-462520910.mp3" loop></audio>
+          </div>
+        </div>
+      </script>
+
       <script>
         Vue.component('timer', {
-          template: '\
-            <div>\
-              <div v-if="!timerStarted">\
-                <!--\
-                In HTML, the value of inputs of type "number" are still\
-                strings, rather than actual numbers like you might expect.\
-                To help compensate for this, Vue provides the "number"\
-                attribute parameter for v-model, which automatically casts\
-                the value of the input to a number for you.\
-                \
-                In Vue 2.0, this will be done through a modifier instead.\
-                That means instead of:\
-                \
-                <input v-model="myNumber" number>\
-                \
-                you will write:\
-                \
-                <input v-model.number="myNumber">\
-                -->\
-                <input\
-                  v-if="!timerStarted"\
-                  v-model="countDownFromSeconds"\
-                  number type="number"\
-                >\
-                <button v-on:click="start">Start</button>\
-              </div>\
-              <div v-else>\
-                <p v-if="!timerFinished">\
-                  <super-counter\
-                    v-bind:initial-value="countDownFromSeconds"\
-                    v-bind:increment-by="-1"\
-                    v-bind:stop-at="0"\
-                    v-bind:when-done="playAlert"\
-                  ></super-counter>\
-                  seconds\
-                </p>\
-                <p v-else>Alert!</p>\
-                <button v-on:click="stop">Stop</button>\
-                <!--\
-                v-el allows us to assign a name to a unique element,\
-                so that we can access it in our code with\
-                this.$els.nameOfMyElement. You can think of this as\
-                like giving an element an id, but scoped to the\
-                component instance.\
-                \
-                In Vue 2.0, v-el with be merged with v-ref, so that\
-                for both HTML elements and Vue components, you will\
-                assign a name with the v-ref attribute and then\
-                access the element or component in your code through\
-                this.$refs.\
-                -->\
-                <audio v-el:alert src="http://soundbible.com/mp3/Alarm%20Alert%20Effect-SoundBible.com-462520910.mp3" loop></audio>\
-              </div>\
-            </div>\
-          ',
+          // Referencing our external template here, rather than
+          // working with it in a multiline string.
+          template: '#timer-template',
 
           data: function () {
             return {
