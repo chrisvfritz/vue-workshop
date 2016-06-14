@@ -22,8 +22,8 @@ export default contextRequire.keys().map((filename, exerciseIndex) => {
 <head>
   <title>My Vue App</title>
   <script src="https://cdn.jsdelivr.net/vue/1.0.24/vue.js"></script>${exampleData.headCode
-      ? '\n  ' + exampleData.headCode.split('\n').join('\n  ').trim()
-      : ''
+    ? '\n  ' + exampleData.headCode.split('\n').join('\n  ').trim()
+    : ''
   }
 </head>
 <body>
