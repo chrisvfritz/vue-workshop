@@ -408,7 +408,7 @@ modification: |
   <p>Enhance the <code>timer</code> component in example 5.4, so that:</p>
   <ul>
     <li>If someone enters a negative number, the timer refuses to start and instead displays an error below the input. When the timer is finally started successfully, the error disappears.</li>
-    <li>Instead of using normal input elements, the <code>timer</code> component uses a <code>bootstrap-input</code> components that you define, which applies the necessary markup for a <a href="http://getbootstrap.com/css/#inputs" target="_blank">Bootstrap input</a>.
+    <li>Instead of using normal input elements, the <code>timer</code> component uses a <code>bootstrap-input</code> component that you define, which applies the necessary markup for a <a href="http://getbootstrap.com/css/#inputs" target="_blank">Bootstrap input</a>.
     <li>The Bootstrap CSS CDN link from examples 5.1 and 5.2 is added to the head, so that the input is styled correctly.</li>
   </ul>
 
