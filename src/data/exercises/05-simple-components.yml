@@ -166,7 +166,7 @@ examples:
           v-bind:initial-value="10"
           v-bind:increment-by="-1"
           v-bind:stop-at="0"
-          v-bind:when-done="counterCallback"
+          v-bind:when-done="setCounterToDone"
         ></super-counter>
         seconds.
       </p>
@@ -227,7 +227,7 @@ examples:
           },
 
           methods: {
-            counterCallback: function () {
+            setCounterToDone: function () {
               this.counterIsDone = true
             }
           }
