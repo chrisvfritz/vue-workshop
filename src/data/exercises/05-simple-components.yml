@@ -281,7 +281,8 @@ examples:
             <input
               v-if="!timerStarted"
               v-model="countDownFromSeconds"
-              number type="number"
+              type="number"
+              number
             >
             <button v-on:click="start">Start</button>
           </div>
