@@ -138,8 +138,8 @@ examples:
         new Vue({
           el: 'body',
           data: {
-            markdown: '# This is some markdown\\n\\n- here\\'s\\n- a\\n- list\\n\\nClick the button below to turn me into HTML!',
-            html: '',
+            markdown: '# This is some markdown\n\n- here\'s\n- a\n- list\n\nClick the button below to turn me into HTML!',
+            html: ''
           },
           methods: {
             generateHTML: function (event) {
