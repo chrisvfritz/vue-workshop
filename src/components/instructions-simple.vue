@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  import vueCDNSource from 'src/data/vue-cdn-source'
+
   import AnchoredHeading from './anchored-heading'
   import CodeBlock from './code-block'
 
@@ -24,7 +26,7 @@
 <html>
 <head>
   <title>My Vue App</title>
-  <script src="https://cdn.jsdelivr.net/vue/1.0.24/vue.js"></script\>
+  <script src="${vueCDNSource}"></script\>
 </head>
 <body>
   <!-- CODE FROM EXAMPlES GOES HERE! -->

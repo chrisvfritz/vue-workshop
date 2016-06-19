@@ -4,9 +4,10 @@
   <footer>
     <p>
       <i>©</i>
-      <a href="https://twitter.com/chrisvfritz" target="_blank">
-        Chris Fritz
-      </a>
+      <a href="https://twitter.com/chrisvfritz" target="_blank">Chris Fritz</a>
+      ·
+      <a class="github-button" href="https://github.com/chrisvfritz/vue-workshop/issues/new" data-icon="octicon-issue-opened" aria-label="Issue chrisvfritz/vue-workshop on GitHub" target="_blank">Improve this resource</a>
+      <a class="github-button" href="https://github.com/chrisvfritz/vue-workshop" data-icon="octicon-star" data-count-href="/chrisvfritz/vue-workshop/stargazers" data-count-api="/repos/chrisvfritz/vue-workshop#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star chrisvfritz/vue-workshop on GitHub" target="_blank">Star</a>
     </p>
   </footer>
 </template>
@@ -105,7 +106,9 @@
     text-align: center;
     margin-top: $content-horizontal-padding;
 
-    i { text-align: middle; }
+    iframe {
+      vertical-align: text-bottom;
+    }
   }
 
   // -----------

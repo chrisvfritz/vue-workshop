@@ -1,3 +1,5 @@
+import vueCDNSource from './vue-cdn-source'
+
 const contextRequire = require.context('./exercises/', false, /\.yml$/)
 
 export default contextRequire.keys().map((filename, exerciseIndex) => {
@@ -21,7 +23,7 @@ export default contextRequire.keys().map((filename, exerciseIndex) => {
 <html>
 <head>
   <title>My Vue App</title>
-  <script src="https://cdn.jsdelivr.net/vue/1.0.24/vue.js"></script>${exampleData.headCode
+  <script src="${vueCDNSource}"></script>${exampleData.headCode
     ? '\n  ' + exampleData.headCode.split('\n').join('\n  ').trim()
     : ''
   }
