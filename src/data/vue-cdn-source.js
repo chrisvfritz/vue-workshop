@@ -1,3 +1,3 @@
 export const vueVersion = 'latest'
 
-export default `https://npmcdn.com/vue@${vueVersion}/dist/vue.js`
+export default `https://unpkg.com/vue@${vueVersion}/dist/vue.js`
