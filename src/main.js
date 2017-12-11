@@ -1,13 +1,29 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import App from './app'
+import store from './state/store'
+import router from './router'
 
-import configureRoutes from './routes'
+Vue.config.productionTip = false
 
-Vue.use(VueRouter)
-const router = new VueRouter({
-  history: true,
-  saveScrollPosition: false,
-  linkActiveClass: 'active'
+const requireComponent = require.context(
+  './components',
+  false,
+  /app-[\w-]+\.vue$/
+)
+requireComponent.keys().forEach(fileName => {
+  const componentConfig = requireComponent(fileName)
+  const componentName = require('lodash/upperFirst')(
+    require('lodash/camelCase')(
+      fileName.replace(/^\.\//, '').replace(/\.\w+$/, '')
+    )
+  )
+  Vue.component(componentName, componentConfig.default || componentConfig)
 })
-configureRoutes(router)
-router.start({}, 'html')
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  store,
+  router,
+  render: h => h(App),
+})

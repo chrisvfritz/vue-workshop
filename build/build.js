@@ -1,35 +1,48 @@
-// https://github.com/shelljs/shelljs
-require('shelljs/global')
-env.NODE_ENV = 'production'
+'use strict'
+require('./check-versions')()
 
-var path = require('path')
-var config = require('../config')
-var ora = require('ora')
-var webpack = require('webpack')
-var webpackConfig = require('./webpack.prod.conf')
+process.env.NODE_ENV = 'production'
 
-console.log(
-  '  Tip:\n' +
-  '  Built files are meant to be served over an HTTP server.\n' +
-  '  Opening index.html over file:// won\'t work.\n'
-)
+const ora = require('ora')
+const rm = require('rimraf')
+const path = require('path')
+const chalk = require('chalk')
+const webpack = require('webpack')
+const config = require('../config')
+const webpackConfig = require('./webpack.prod.conf')
 
-var spinner = ora('building for production...')
+const spinner = ora('building for production...')
 spinner.start()
 
-var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
-rm('-rf', assetsPath)
-mkdir('-p', assetsPath)
-cp('-R', 'static/', assetsPath)
+rm(
+  path.join(config.build.assetsRoot, config.build.assetsSubDirectory),
+  error => {
+    if (error) throw error
+    webpack(webpackConfig, function(error, stats) {
+      spinner.stop()
+      if (error) throw error
+      process.stdout.write(
+        stats.toString({
+          colors: true,
+          modules: false,
+          children: false,
+          chunks: false,
+          chunkModules: false,
+        }) + '\n\n'
+      )
 
-webpack(webpackConfig, function (err, stats) {
-  spinner.stop()
-  if (err) throw err
-  process.stdout.write(stats.toString({
-    colors: true,
-    modules: false,
-    children: false,
-    chunks: false,
-    chunkModules: false
-  }) + '\n')
-})
+      if (stats.hasErrors()) {
+        console.log(chalk.red('  Build failed with errors.\n'))
+        process.exit(1)
+      }
+
+      console.log(chalk.cyan('  Build complete.\n'))
+      console.log(
+        chalk.yellow(
+          '  Tip: built files are meant to be served over an HTTP server.\n' +
+            "  Opening index.html over file:// won't work.\n"
+        )
+      )
+    })
+  }
+)

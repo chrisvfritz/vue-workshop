@@ -1,16 +1,53 @@
+// https://eslint.org/docs/user-guide/configuring
 module.exports = {
   root: true,
-  // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
-  // required to lint *.vue files
-  plugins: [
-    'html'
+  parserOptions: {
+    parser: 'babel-eslint',
+    sourceType: 'module',
+  },
+  env: {
+    browser: true,
+  },
+  extends: [
+    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
+    'standard',
+    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
+    'plugin:vue/recommended',
+    // https://github.com/prettier/eslint-config-prettier
+    'prettier',
+    'prettier/standard',
   ],
-  // add your custom rules here
-  'rules': {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
-  }
+  rules: {
+    // Only allow debugger in development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+  },
+  overrides: [
+    {
+      files: ['src/**/*'],
+      rules: {
+        // Only allow `console.log` in development
+        'no-console':
+          process.env.NODE_ENV === 'production'
+            ? ['error', { allow: ['warn', 'error'] }]
+            : 'off',
+      },
+    },
+    {
+      files: ['**/*.unit.js'],
+      env: { jest: true },
+      globals: {
+        createComponentMocks: false,
+        createLocalVue: false,
+        shallow: false,
+        mount: false,
+      },
+    },
+    {
+      files: ['**/test/e2e/**/*'],
+      plugins: ['cypress'],
+      env: {
+        'cypress/globals': true,
+      },
+    },
+  ],
 }

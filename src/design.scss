@@ -1,27 +1,35 @@
-// ------
+// ===
+// Define all shared design variables here.
+//
+// Inside a Vue component <style>, you can
+// import these variables with:
+//
+// @import '~@design';
+// ===
+
 // LAYOUT
-// ------
+$content-width-max: 800px;
+$grid-padding: 10px;
 
-// Content
-$content-vertical-padding: 15px;
-$content-horizontal-padding: 30px;
+// TYPOGRAPHY
+$sans-serif-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+  Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$base-font-size: 14px;
+$base-line-height: 1.5;
+$base-text-color: #444;
+$base-link-text-color: #4080d0;
+$base-link-text-color-active: coral;
 
-// Code Blocks
-$code-block-padding: $content-horizontal-padding;
+// BACKGROUNDS & TEXTURES
+$body-bg: #f9f7f5;
 
-// ------
-// COLORS
-// ------
+// FORMS
+$button-bg: green;
+$button-text-color: white;
 
-// Content
-$body-font-color: #2c3e50;
-$body-link-color: #3AA979;
-
-// Code Blocks
-$code-block-background-color: #fbfff3;
-
-// Hacks
-// iOS doesn't understand the keyword "transparent" in
-// the context of gradients, so this is used instead.
-// https://developer.apple.com/library/safari/documentation/InternetWeb/Conceptual/SafariVisualEffectsProgGuide/Gradients/Gradient.html
-$gradient-transparent: rgba(255,255,255,0);
+// stylelint-disable property-case, property-no-unknown
+// For any SCSS variables you want to import into JavaScript,
+// you must first export them here:
+:export {
+  contentWidthMax: $content-width-max;
+}
