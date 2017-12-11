@@ -78,9 +78,9 @@ module.exports = new Promise((resolve, reject) => {
         new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
             messages: [
-              `Your application is running here: http://${config.dev.host}:${
-                port
-              }`,
+              `Your application is running here: http://${
+                config.dev.host
+              }:${port}`,
             ],
           },
           onErrors: config.dev.notifyOnErrors
