@@ -1,6 +1,6 @@
-# My Vue Boilerplate
+# Vue Workshop
 
-> This is my ever-evolving, very opinionated dev environment and architecture for new projects. Questions, feedback, and even bikeshedding welcome. 😄
+> We'll cover everything you need to know to get started building world-class Vue applications. Topics will include configuring Webpack for single-file components, setting up the most advanced workflows currently possible, how to organize (and reorganize) increasingly complex applications, and more.
 
 * [Development](#development)
 * [Editors](#editors)
@@ -28,7 +28,10 @@
 * [Tests](#tests)
   * [Unit tests](#unit-tests)
     * [Jest](#jest)
-    * [Vue Test Utils](#vue-test-utils)
+    * [vue-test-utils](#vue-test-utils)
+    * [VS Code integration](#vs-code-integration)
+  * [End-to-end tests](#end-to-end-tests)
+    * [Cypress](#cypress)
 
 ## Development
 
