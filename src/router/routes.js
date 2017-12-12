@@ -1,7 +1,6 @@
-import store from '@state/store'
 import HomePage from '@pages/home'
-import LoginPage from '@pages/login'
-import ProfilePage from '@pages/profile'
+import ExercisesPage from '@pages/exercises'
+import ExercisePage from '@pages/exercise'
 
 export default [
   {
@@ -10,41 +9,20 @@ export default [
     component: HomePage,
   },
   {
-    path: '/login',
-    name: 'login',
-    component: LoginPage,
-    beforeEnter(routeTo, routeFrom, next) {
-      // If the user is already logged in
-      if (store.getters.loggedIn) {
-        // Redirect to the home page instead
-        next({ name: 'home' })
-      } else {
-        // Continue to the login page
-        next()
-      }
-    },
+    path: '/exercises',
+    name: 'exercises',
+    component: ExercisesPage,
   },
   {
-    path: '/profile',
-    name: 'profile',
-    component: ProfilePage,
-    meta: {
-      authRequired: true,
-    },
+    path: '/exercises/:slug',
+    name: 'exercise',
+    component: ExercisePage,
   },
   {
-    path: '/logout',
-    name: 'logout',
-    meta: {
-      authRequired: true,
-    },
-    beforeEnter(routeTo, routeFrom, next) {
-      store.dispatch('logOut')
-      // Navigate back to previous page
-      const authRequiredOnPreviousRoute = routeFrom.matched.some(
-        route => route.meta.authRequired
-      )
-      next(authRequiredOnPreviousRoute ? next({ name: 'home' }) : routeFrom)
-    },
+    path: '/exercise/:slug',
+    redirect: to => ({
+      name: 'exercise',
+      slug: to.params.slug,
+    }),
   },
 ]

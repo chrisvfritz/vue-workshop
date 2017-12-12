@@ -9,7 +9,11 @@ const modules = {}
 
 files.keys().forEach(key => {
   if (key === './index.js' || /\.unit\.js$/.test(key)) return
-  modules[camelCase(key.replace(/(\.\/|\.js)/g, ''))] = files(key).default
+  const moduleName = camelCase(key.replace(/(\.\/|\.js)/g, ''))
+  modules[moduleName] = {
+    namespaced: true,
+    ...files(key),
+  }
 })
 
 export default modules

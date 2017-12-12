@@ -1,5 +1,4 @@
 <script>
-import { authGetters } from '@state/helpers'
 import NavBarRoutes from './nav-bar-routes'
 
 export default {
@@ -8,47 +7,24 @@ export default {
   },
   data() {
     return {
-      persistentNavRoutes: [
+      navRoutes: [
         {
           name: 'home',
           title: 'Home',
         },
-      ],
-      loggedInNavRoutes: [
         {
-          name: 'profile',
-          title: () => 'Logged in as ' + this.currentUser.name,
-        },
-        {
-          name: 'logout',
-          title: 'Log out',
-        },
-      ],
-      loggedOutNavRoutes: [
-        {
-          name: 'login',
-          title: 'Log in',
+          name: 'exercises',
+          title: 'Exercises',
         },
       ],
     }
-  },
-  computed: {
-    ...authGetters,
   },
 }
 </script>
 
 <template>
   <ul :class="$style.container">
-    <NavBarRoutes :routes="persistentNavRoutes"/>
-    <NavBarRoutes
-      v-if="loggedIn"
-      :routes="loggedInNavRoutes"
-    />
-    <NavBarRoutes
-      v-else
-      :routes="loggedOutNavRoutes"
-    />
+    <NavBarRoutes :routes="navRoutes"/>
   </ul>
 </template>
 

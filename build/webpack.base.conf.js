@@ -21,6 +21,7 @@ module.exports = {
       process.env.NODE_ENV === 'production'
         ? config.build.assetsPublicPath
         : config.dev.assetsPublicPath,
+    libraryExport: true,
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -75,6 +76,10 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
         },
+      },
+      {
+        test: /\.md$/,
+        loaders: ['json-loader', 'front-matter-loader'],
       },
     ],
   },
