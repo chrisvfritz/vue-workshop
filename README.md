@@ -40,6 +40,9 @@
 # If you don't have yarn installed: `npm install --global yarn`
 yarn install
 
+# If you have yarn installed already but need to update it...
+npm upgrade --global yarn
+
 # Launch and serve with live reload at localhost:9080
 yarn dev
 
