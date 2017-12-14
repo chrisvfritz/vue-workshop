@@ -2,6 +2,7 @@
 
 > We'll cover everything you need to know to get started building world-class Vue applications. Topics will include configuring Webpack for single-file components, setting up the most advanced workflows currently possible, how to organize (and reorganize) increasingly complex applications, and more.
 
+* [Setup](#setup)
 * [Development](#development)
 * [Editors](#editors)
   * [Visual Studio Code](#visual-studio-code)
@@ -33,15 +34,16 @@
   * [End-to-end tests](#end-to-end-tests)
     * [Cypress](#cypress)
 
+## Setup
+
+1. [Install the latest version of Yarn](https://yarnpkg.com/en/docs/install)
+
 ## Development
 
 ```bash
 # Install dependencies
 # If you don't have yarn installed: `npm install --global yarn`
 yarn install
-
-# If you have yarn installed already but need to update it...
-npm upgrade --global yarn
 
 # Launch and serve with live reload at localhost:9080
 yarn dev
