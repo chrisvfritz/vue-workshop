@@ -16,7 +16,7 @@ export default {
 </template>
 
 <style lang="scss" module>
-@import '~@design';
+@import '~@design-variables';
 
 .container {
   max-width: $content-width-max;

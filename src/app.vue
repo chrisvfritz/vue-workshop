@@ -22,7 +22,7 @@ export default {
 <!-- This should generally be the only global CSS in the app -->
 <style lang="scss">
 @import 'normalize.css/normalize.css';
-@import '~@design';
+@import '~@styles/styles.scss';
 
 *,
 *::before,

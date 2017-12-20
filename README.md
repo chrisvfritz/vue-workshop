@@ -236,10 +236,10 @@ Do you know what that means?! You can _never_ write styles that interfere with a
 
 ### Design variables
 
-To import CSS from a Webpack alias, you must use the `~` prefix. So for example, to import `design.scss`, which is aliased to `@design` for convenience, you will write:
+To import CSS from a Webpack alias, you must use the `~` prefix. So for example, to import `design-variables.scss`, which is aliased to `@design-variables` for convenience, you will write:
 
 ```scss
-@import '~@design';
+@import '~@design-variables';
 ```
 
 This makes all the variables in that file available in your component. These variables can also be made available in your JavaScript by placing them inside an `:export` in `design.scss` (see that file for more information).

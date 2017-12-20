@@ -4,7 +4,7 @@
 // Inside a Vue component <style>, you can
 // import these variables with:
 //
-// @import '~@design';
+// @import '~@design-variables';
 // ===
 
 // LAYOUT
@@ -31,5 +31,5 @@ $button-text-color: white;
 // For any SCSS variables you want to import into JavaScript,
 // you must first export them here:
 :export {
-  contentWidthMax: $content-width-max;
+  contentwidthmax: $content-width-max;
 }

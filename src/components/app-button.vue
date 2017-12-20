@@ -8,7 +8,7 @@
 </template>
 
 <style lang="scss" module>
-@import '~@design';
+@import '~@design-variables';
 
 .button {
   padding: $grid-padding / 2 $grid-padding;
