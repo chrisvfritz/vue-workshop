@@ -16,11 +16,16 @@ export default {
 </template>
 
 <style lang="scss" module>
-@import '~@design';
+@import '~@styles/styles.scss';
 
 .container {
-  max-width: $content-width-max;
+  max-width: width(maxContentWidth);
   padding: 0 $grid-padding;
   margin: 0 auto;
+  @extend %t-medium;
+}
+
+h1 {
+  @extend %t-xlarge;
 }
 </style>

@@ -4,11 +4,26 @@
 // Inside a Vue component <style>, you can
 // import these variables with:
 //
-// @import '~@design';
+// @import '~@design-variables';
 // ===
 
 // LAYOUT
-$content-width-max: 800px;
+// Widths
+$widths: (
+  maxContentWidth: 50rem,
+  minContentWidth: 25rem
+);
+
+@function width($key) {
+  @if map-has-key($widths, $key) {
+    @return map-get($widths, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $widths.";
+
+  @return null;
+}
+
 $grid-padding: 10px;
 
 // TYPOGRAPHY
@@ -31,5 +46,5 @@ $button-text-color: white;
 // For any SCSS variables you want to import into JavaScript,
 // you must first export them here:
 :export {
-  contentWidthMax: $content-width-max;
+  contentwidthmax: width(maxContentWidth);
 }
