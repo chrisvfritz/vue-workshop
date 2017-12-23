@@ -1,6 +1,7 @@
 <script>
 import MainLayout from '@layouts/main'
 import { contentGetters } from '@state/helpers'
+import convertMdToHtml from '@utils/convert-md-to-html'
 
 export default {
   components: {
@@ -8,6 +9,9 @@ export default {
   },
   computed: {
     ...contentGetters,
+    lessonContent() {
+      return convertMdToHtml(this.currentExercise.markdown)
+    },
   },
 }
 </script>
@@ -17,13 +21,15 @@ export default {
     <router-link :to="{ name: 'exercises' }">
       Back
     </router-link>
-    <pre
+    <!-- <pre
       v-if="currentExercise"
       v-text="currentExercise"
     />
     <p v-else>
       No exercise exists: "{{ $route.params.slug }}"
-    </p>
+    </p> -->
+    <h1>{{ currentExercise.title }}</h1>
+    <div v-html="lessonContent" />
   </MainLayout>
 </template>
 
